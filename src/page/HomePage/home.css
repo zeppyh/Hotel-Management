@@ -1,0 +1,43 @@
+.home-container img {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  opacity: 50%;
+}
+
+.image-trade-name {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  position: absolute;
+  top: 35%;
+  left: 10%;
+  font-size: 22px;
+  gap: 25px;
+}
+
+.image-trade-name h1 {
+  font-size: 70px;
+}
+
+.image-trade-name h2 {
+  color: #824921;
+}
+
+.image-trade-name p {
+  font-weight: 500;
+  color: #6c7a51;
+}
+
+.book-btn {
+  border-radius: 30px;
+  padding: 10px 40px;
+  font-family: Inter;
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  text-transform: none;
+}
