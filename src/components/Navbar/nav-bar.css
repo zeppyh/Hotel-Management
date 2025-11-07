@@ -17,6 +17,12 @@
   align-items: center;
   font-size: 20px;
   gap: 70px;
+  cursor: pointer;
+}
+
+.link ul {
+  display: flex;
+  gap: 70px;
 }
 
 .link a {
@@ -31,6 +37,10 @@
   display: flex;
   align-items: center;
   gap: 15px;
+}
+
+.logo-container h1 {
+  text-shadow: 0px 3px 5px rgba(133, 130, 130, 0.3);
 }
 
 .logo-container img {

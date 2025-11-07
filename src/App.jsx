@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router";
-import Home from "./page/HomePage/Home";
+import HomePage from "./page/HomePage/HomePage";
 import Login from "./page/LoginPage/Login";
 import NavBar from "./components/Navbar/NavBar";
 
@@ -11,8 +11,8 @@ function App() {
           <NavBar />
         </div>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Home" element={<Home />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/Home" element={<HomePage />} />
           <Route path="*" element={<Login />} />
         </Routes>
       </BrowserRouter>

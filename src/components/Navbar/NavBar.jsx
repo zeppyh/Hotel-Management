@@ -1,3 +1,4 @@
+import { Link } from "react-scroll";
 import { NavLink } from "react-router";
 import Button from "@mui/material/Button";
 import "./nav-bar.css";
@@ -12,11 +13,28 @@ function Home() {
         </div>
 
         <div className="link">
-          <NavLink to="#Home">Home</NavLink>
-          <NavLink to="/">Rooms & Suites</NavLink>
-          <NavLink to="/">About</NavLink>
-          <NavLink to="/">Contact Us</NavLink>
-
+          <ul>
+            <li>
+              <Link to="home" smooth={true} duration={500}>
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to="room&suites" smooth={true} duration={500}>
+                Room & Suites
+              </Link>
+            </li>
+            <li>
+              <Link to="about" smooth={true} duration={500}>
+                About
+              </Link>
+            </li>
+            <li>
+              <Link to="contact-us" smooth={true} duration={500}>
+                Contact Us
+              </Link>
+            </li>
+          </ul>
           <div className="sign-up-btn">
             <NavLink to="/">
               <Button variant="contained">Sign Up</Button>
