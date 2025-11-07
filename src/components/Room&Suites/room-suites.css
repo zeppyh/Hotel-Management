@@ -6,7 +6,7 @@ body {
   height: 100vh;
 }
 
-.h3 {
+.room-suites-header {
   display: flex;
   justify-content: center;
   padding-top: 120px;
@@ -14,8 +14,9 @@ body {
   color: #b27950;
 }
 
-h3 {
+h4 {
   font-weight: 500;
+  font-size: 20px;
 }
 
 .title {

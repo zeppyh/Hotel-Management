@@ -47,7 +47,7 @@
   width: 85px;
   height: 85px;
   border-radius: 100%;
-  box-shadow: 0px 5px 4px rgb(206, 195, 195);
+  box-shadow: 0px 5px 4px #cec3c3;
 }
 
 .sign-up-btn button {

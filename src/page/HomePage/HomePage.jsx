@@ -2,8 +2,32 @@ import RoomSuites from "../../components/Room&Suites/RoomSuites";
 import Home from "../../components/LandingPage/Home";
 import "./home-page.css";
 import { useState } from "react";
+import AboutUs from "../../components/AboutUs/AboutUs";
 
 function HomePage() {
+  const [values] = useState([
+    {
+      id: 1,
+      image: "./src/assets/sustainability.jpg",
+      title: "Sustainability",
+      paragraph:
+        "We honor the earth through eco-conscious practices and locally-sourced materials",
+    },
+    {
+      id: 2,
+      image: "./src/assets/community.jpg",
+      title: "Community",
+      paragraph:
+        "Supporting local artisans and celebrating Filipino craftsmanship in every detail.",
+    },
+    {
+      id: 3,
+      image: "./src/assets/mindfulness.jpg",
+      title: "Mindfulness",
+      paragraph:
+        "Creating spaces that encourage presence, reflection, and genuine connection.",
+    },
+  ]);
   const [data] = useState([
     {
       id: 1,
@@ -51,11 +75,7 @@ function HomePage() {
         </section>
 
         <section id="about" name="about">
-          <RoomSuites />
-        </section>
-
-        <section id="contact" name="contact">
-          <RoomSuites />
+          <AboutUs values={values} />
         </section>
       </div>
     </>

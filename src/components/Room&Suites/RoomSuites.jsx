@@ -8,11 +8,11 @@ import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
 import { Users, Ruler, Eye } from "lucide-react";
 
-function RoomSuites({ data = [] }) {
+function RoomSuites({ data }) {
   return (
     <div className="room-suites-container">
-      <div className="h3">
-        <h3>ACCOMMODATIONS</h3>
+      <div className="room-suites-header">
+        <h4>ACCOMMODATIONS</h4>
       </div>
 
       <div className="title">
@@ -40,7 +40,7 @@ function RoomSuites({ data = [] }) {
               image={room.image}
               alt={room.roomName}
               sx={{
-                height: 250,
+                height: 300,
                 objectFit: "cover",
               }}
             />
