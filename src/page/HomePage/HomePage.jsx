@@ -1,8 +1,9 @@
 import RoomSuites from "../../components/Room&Suites/RoomSuites";
 import Home from "../../components/LandingPage/Home";
-import "./home-page.css";
 import { useState } from "react";
 import AboutUs from "../../components/AboutUs/AboutUs";
+import "./home-page.css";
+import ContactUs from "../../components/ContactUs/ContactUs";
 
 function HomePage() {
   const [values] = useState([
@@ -76,6 +77,10 @@ function HomePage() {
 
         <section id="about" name="about">
           <AboutUs values={values} />
+        </section>
+
+        <section id="contact-us" name="contact-us">
+          <ContactUs values={values} />
         </section>
       </div>
     </>

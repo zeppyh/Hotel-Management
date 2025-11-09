@@ -1,0 +1,109 @@
+.contact-us-container {
+  display: flex;
+  padding: 80px;
+  justify-content: space-evenly;
+  height: 100vh;
+  gap: 30px;
+}
+
+.contact-us-header {
+  color: #ae5c20;
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+.contact-title h3 {
+  font-family: "Playfair Display";
+  width: 450px;
+  font-size: 48px;
+  font-weight: 400;
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  color: #808d68;
+}
+
+.contact-form {
+  width: 100%;
+}
+
+.contact-details {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.contact-details p {
+  font-size: 20px;
+  font-weight: 200;
+}
+
+.contact-details h2 {
+  font-family: Inter;
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.contact-details .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #b27b29, #8ca251);
+}
+
+.contact-details {
+  display: flex;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  padding-top: 50px;
+}
+
+.contact-info p {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  width: 350px;
+}
+
+.operating-hour {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 80%;
+  padding: 30px;
+  margin-top: 20px;
+  margin-left: 30px;
+  border-radius: 30px;
+  background-color: #f5edd6;
+}
+
+.operating-hour h2 {
+  font-weight: 400;
+  font-size: 24px;
+  font-family: Inter;
+}
+
+.operating-hour p {
+  font-size: 20px;
+}
+
+.weekends {
+  display: flex;
+  gap: 270px;
+}
+
+.weekdays {
+  display: flex;
+  gap: 290px;
+}
