@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import HomePage from "./page/HomePage/HomePage";
 import Login from "./page/LoginPage/Login";
 import NavBar from "./components/Navbar/NavBar";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -17,6 +18,10 @@ function App() {
           <Route path="/HomePage" element={<HomePage />} />
           <Route path="*" element={<Login />} />
         </Routes>
+
+        <footer>
+          <Footer />
+        </footer>
       </BrowserRouter>
     </>
   );
