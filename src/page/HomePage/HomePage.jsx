@@ -1,9 +1,9 @@
 import RoomSuites from "../../components/Room&Suites/RoomSuites";
-import Home from "../../components/LandingPage/Home";
-import { useState } from "react";
+import Home from "../../components/Home/Home";
 import AboutUs from "../../components/AboutUs/AboutUs";
-import "./home-page.css";
 import ContactUs from "../../components/ContactUs/ContactUs";
+import { useState } from "react";
+import "./home-page.css";
 
 function HomePage() {
   const [values] = useState([
