@@ -1,4 +1,4 @@
-import { NavLink, Link } from "react-router";
+import { NavLink } from "react-router";
 import { Button } from "@mui/material";
 import { ArrowLeft } from "lucide-react";
 import "./log-in.css";
@@ -63,18 +63,18 @@ function Login() {
 
             <div className="login-sign-up-btn">
               <p>Don't have an Account?</p>
-              <NavLink to="/SignUp" className="signup-btn">
+              <NavLink to="/SignUpPage" className="signup-btn">
                 Sign Up
               </NavLink>
             </div>
 
             <div className="back-btn">
-              <Link to="/HomePage" className="btn-group">
+              <NavLink to="/" className="btn-group">
                 <div>
-                  <ArrowLeft size={24} strokeWidth={0.5} className="arrow" />
+                  <ArrowLeft size={24} strokeWidth={2} className="arrow" />
                 </div>
                 <p> Back to Home</p>
-              </Link>
+              </NavLink>
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-.login-page {
+.signup-page {
   position: relative;
   height: 100vh;
   display: flex;
@@ -7,12 +7,12 @@
   overflow: hidden;
 }
 
-.login-header img {
+.signup-header img {
   width: 102px;
   height: 102px;
 }
 
-.login-bg-image img {
+.signup-bg-image img {
   position: absolute;
   top: 0;
   left: 0;
@@ -23,7 +23,19 @@
   opacity: 0.5;
 }
 
-.login-header {
+.signup-container {
+  position: relative;
+  z-index: 1;
+  border-radius: 30px;
+  background-color: #fffdf6;
+  padding: 40px 60px;
+  max-width: 500px;
+  height: 900px;
+  width: 90%;
+  box-shadow: 0 5px 20px #00000033;
+}
+
+.signup-header {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,7 +43,7 @@
   padding-bottom: 20px;
 }
 
-.login-header h1 {
+.signup-header h1 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,90 +52,43 @@
   width: 350px;
 }
 
-.login-container {
-  position: relative;
-  z-index: 1;
-  border-radius: 30px;
-  background-color: #fffdf6;
-  padding: 40px 60px;
-  max-width: 500px;
-  height: 850px;
-  width: 90%;
-  box-shadow: 0 5px 20px #00000033;
-}
-
-.login-form {
+.signup-form-group {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 5px;
 }
 
-.form-group label {
-  color: #808d68;
-}
-
-.form-group input:focus::placeholder {
-  color: transparent;
-}
-
-.form-group input {
-  width: 100%;
-  height: 60px;
-  margin-top: 5px;
-  padding-left: 20px;
-  font-size: 24px;
-  border-radius: 25px;
+.signup-form-group input {
   background-color: #fff7ea;
   border: 1px solid #be813c;
+  border-radius: 25px;
+  padding: 15px;
 }
 
-.form-group input::placeholder {
-  font-size: 20px;
-  transform: translateX(5px) translateY(1px);
-}
-
-.login-option {
+.signup-form {
   display: flex;
-  justify-content: space-between;
-  padding: 50px 0px 50px 0px;
-}
-
-.remember-me {
-  display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 20px;
 }
 
-.remember-me input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  accent-color: #6461f3;
-  cursor: pointer;
+.terms-conditions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
 }
 
-.remember-me p {
-  color: #72757a;
-  font-size: 16px;
+.text-color {
+  color: #be813c;
 }
 
-.forgot-btn {
-  font-size: 16px;
-  font-weight: 500;
-  color: #975a2f;
-}
-
-.forgot-btn:hover {
-  color: #b27950;
-  text-decoration: underline;
-}
-
-.login-btn {
+.sign-up-btn {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.login-btn Button {
+.sign-up-btn Button {
   width: 100%;
   padding: 5px;
   color: #ffffff;
@@ -133,18 +98,17 @@
   background-color: #975a2f;
 }
 
-.login-btn Button:hover {
+.sign-up-btn Button:hover {
   background-color: #b27950;
 }
 
-.login-divider {
+.signup-divider {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
 }
 
-.login-divider .line {
+.signup-divider .line {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -155,54 +119,46 @@
   background-color: #be813c;
 }
 
-.login-divider p {
+.signup-divider p {
   color: #72757a;
   font-size: 16px;
-  padding: 30px;
+  padding: 10px 20px 10px 20px;
 }
 
-.login-sign-up-btn {
+.sign-btn {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 15px;
   gap: 20px;
 }
 
-.login-sign-up-btn p {
+.sign-btn p {
   font-size: 16px;
   color: #72757a;
 }
 
-.login-sign-up-btn .signup-btn {
+.sign-btn .signup-btn {
   font-size: 16px;
   color: #975a2f;
 }
 
-.signup-btn:hover {
-  text-decoration: underline;
-}
-
-.back-btn {
-  display: flex;
-  justify-content: center;
-  margin-top: 80px;
-}
-
-.btn-group {
+.sign-btn-group {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 25px;
   position: relative;
   left: -11px;
   color: #72757a;
   gap: 5px;
 }
 
-.back-btn p {
+.sign-back-btn p {
   font-size: 16px;
 }
 
-.btn-group:hover {
+.sign-btn-group:hover {
   font-weight: 500;
   color: #000000;
   text-decoration: underline;

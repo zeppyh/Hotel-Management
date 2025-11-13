@@ -3,9 +3,8 @@ import Home from "../../components/Home/Home";
 import AboutUs from "../../components/AboutUs/AboutUs";
 import ContactUs from "../../components/ContactUs/ContactUs";
 import { useState } from "react";
-import "./home-page.css";
 
-function HomePage() {
+function LandingPage() {
   const [values] = useState([
     {
       id: 1,
@@ -87,4 +86,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default LandingPage;

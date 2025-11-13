@@ -1,29 +1,20 @@
 import { BrowserRouter, Routes, Route } from "react-router";
-import HomePage from "./page/HomePage/HomePage";
-import Footer from "./components/Footer/Footer";
-import NavBar from "./components/Navbar/NavBar";
+import LandingPage from "./page/LandingPage/LandingPage";
 import SignUpPage from "./page/SignUpPage/SignUpPage";
-import ErrorPage from "./page/ErrorPage/ErrorPage";
 import LoginPage from "./page/LoginPage/LoginPage";
+import LandingPageRoute from "./routes/public-routes/LandingPageRoute";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <NavBar />
-
         <Routes>
-          <>
-            <Route path="/LoginPage" element={<LoginPage />} />
-            <Route path="/SignUpPage" element={<SignUpPage />} />
-            <Route path="*" element={<ErrorPage />} />
-          </>
+          <Route element={<LandingPageRoute />}>
+            <Route path="/" element={<LandingPage />} />
+          </Route>
 
-          <>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/HomePage" element={<HomePage />} />
-            <Route path="*" element={<ErrorPage />} />
-          </>
+          <Route path="/LoginPage" element={<LoginPage />} />
+          <Route path="/SignUpPage" element={<SignUpPage />} />
         </Routes>
       </BrowserRouter>
     </>

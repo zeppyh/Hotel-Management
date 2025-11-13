@@ -1,12 +1,11 @@
+import SignUp from "../../components/Signup/SignUp";
+
 function SignUpPage() {
   return (
     <>
-      <div className="sign-u">
-        <div className=""></div>
-      </div>
+      <SignUp />
     </>
   );
 }
 
 export default SignUpPage;
-2;
