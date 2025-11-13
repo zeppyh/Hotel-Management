@@ -104,6 +104,8 @@
 .footer-divider {
   height: 1px;
   background-color: #ffffff99;
+  width: 50%;
+  margin: 0 auto;
 }
 
 .footer-bottom {

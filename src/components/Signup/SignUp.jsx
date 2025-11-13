@@ -91,9 +91,9 @@ function SignUp() {
             </div>
 
             <div className="sign-btn">
-              <p>Don't have an Account?</p>
-              <NavLink to="/SignUpPage" className="signup-btn">
-                Sign Up
+              <p>Already a Member?</p>
+              <NavLink to="/LoginPage" className="signup-btn">
+                Login Here
               </NavLink>
             </div>
 
