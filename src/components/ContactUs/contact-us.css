@@ -145,13 +145,13 @@
   padding-bottom: 20px;
 }
 
-label {
+.form label {
   font-size: 20px;
   font-weight: 500;
   color: #808d68;
 }
 
-input {
+.form input {
   font-size: 24px;
   padding: 20px;
   border: none;
@@ -159,14 +159,14 @@ input {
   background-color: #fff7ea;
 }
 
-input::placeholder {
-  transform: translateX(-5px) translateY(5px);
+.form input::placeholder {
+  transform: translateX(-5px) translateY(3px);
   font-size: 24px;
   opacity: 0.8;
   display: inline-block;
 }
 
-input:focus::placeholder {
+.form input:focus::placeholder {
   color: transparent;
 }
 
@@ -192,11 +192,10 @@ input:focus::placeholder {
   padding: 25px;
   font-size: 18px;
   resize: none;
-  transition: all 0.4s ease;
 }
 
 .message-inquiry textarea::placeholder {
-  color: rgba(0, 0, 0, 0.6);
+  color: #00000099;
   font-size: 16px;
   transform: translateY(-5px);
 }

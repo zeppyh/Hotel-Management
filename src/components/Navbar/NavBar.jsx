@@ -36,7 +36,7 @@ function Home() {
             </li>
           </ul>
           <div className="sign-up-btn">
-            <NavLink to="/">
+            <NavLink to="/SignUpPage">
               <Button variant="contained">Sign Up</Button>
             </NavLink>
           </div>

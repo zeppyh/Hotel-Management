@@ -58,7 +58,7 @@ function AboutUs({ values }) {
 
         <div className="values-card">
           {values.map((value) => (
-            <div className="our-values">
+            <div className="our-values" key={value.id}>
               <div className="values">
                 <img src={value.image} alt="asdfasd" />
 
