@@ -8,7 +8,8 @@ function Footer() {
       <div className="footer-container">
         <div className="footer-content">
           <div className="footer-header">
-            <img src="./src/assets/icon.png" alt="Icon of Casa Diwa" />
+            <img src="./src/assets/icon.png" alt="Icon of Casa Diwa" /> 
+            {/* EDIT FOR STORAGE */}
             <h1>Casa Diwa</h1>
           </div>
           <div className="footer-logo-container">

@@ -1,14 +1,30 @@
 import { Link } from "react-scroll";
 import { NavLink } from "react-router";
+import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { ref, onValue } from "firebase/database";
+import { auth, db } from "../../firebase-config";
+
 import Button from "@mui/material/Button";
 import "./nav-bar.css";
+import { getDownloadURL } from "firebase/storage";
 
-function Home() {
+function Home({ user }) {
+
+
+  function logOut() {
+    auth.signOut();
+    alert("Logged out successfully");
+
+  }
+
+
   return (
     <>
       <div className="nav-bar-container">
         <div className="logo-container">
           <img src="./src/assets/icon.png" alt="Icon of Casa Diwa" />
+          {/* EDIT FOR STORAGE*/}
           <h1>Casa Diwa</h1>
         </div>
 
@@ -36,9 +52,18 @@ function Home() {
             </li>
           </ul>
           <div className="sign-up-btn">
-            <NavLink to="/LoginPage">
-              <Button variant="contained">Sign Up</Button>
-            </NavLink>
+            {!user &&
+              <NavLink to="/SignUpPage">
+                <Button variant="contained">Sign Up</Button>
+              </NavLink>
+            }
+
+            {user &&
+              <NavLink to="/LoginPage">
+                <Button variant="contained" onClick={logOut} >Logout</Button>
+              </NavLink>
+            }
+
           </div>
         </div>
       </div>

@@ -1,10 +1,72 @@
 import { NavLink } from "react-router";
 import { Button } from "@mui/material";
 import { ArrowLeft } from "lucide-react";
+import { useState } from 'react'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth } from "../../firebase-config";
+import { ref, set } from "firebase/database";
+import { db } from "../../firebase-config";
+import { onAuthStateChanged } from "firebase/auth";
 
 import "./sign-up.css";
 
+
 function SignUp() {
+
+  const [fullName, setFullName] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [phoneNumber, setPhoneNumber] = useState();
+  const [confirmPassword, setConfirmPassword] = useState();
+  const [agreeTerms, setAgreeTerms] = useState(false);
+
+
+  function saveData(user) {
+    let data = {
+      phoneNumber: phoneNumber,
+      fullName: fullName,
+      email: email,
+      role: "customer"
+
+    }
+    return set(ref(db, `users/${user.uid}`), data);
+  }
+
+
+  function handleSignUp(e) {
+    if (!fullName || !email || !password || !phoneNumber || !confirmPassword) {
+      alert("Please fill in all the required fields.");
+      return;
+    }
+    if (password !== confirmPassword) {
+      alert("Passwords do not match.");
+      return;
+    }
+    if (!agreeTerms) {
+      alert("You must agree to the Terms & Conditions and Privacy Policy.");
+      return;
+    }
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+
+        return saveData(user);
+      })
+      .then(() => {
+        alert("User registered successfully");
+        window.location.href = "/";
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+
+  };
+
+
+
+
+
   return (
     <>
       <div className="signup-page">
@@ -27,20 +89,21 @@ function SignUp() {
             <div className="signup-form">
               <div className="signup-form-group">
                 <label htmlFor="fullName">Full Name</label>
-                <input type="text" placeholder="Juan Dela Cruz" id="fullName" />
+                <input onChange={(e) => setFullName(e.target.value)} type="text" placeholder="Enter your full name" id="fullName" />
               </div>
 
               <div className="signup-form-group">
                 <label htmlFor="email">Email Address</label>
-                <input type="email" placeholder="your@gmail.com" id="email" />
+                <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Enter your email address" id="email" />
               </div>
 
               <div className="signup-form-group">
-                <label htmlFor="phoneNumber">Password</label>
+                <label htmlFor="phoneNumber">Phone Number</label>
                 <input
                   type="tel"
-                  placeholder="+63 912 345 6789"
+                  placeholder="Enter your phone number"
                   id="phoneNumber"
+                  onChange={(e) => setPhoneNumber(e.target.value)}
                 />
               </div>
 
@@ -50,21 +113,28 @@ function SignUp() {
                   type="password"
                   placeholder="Create a password"
                   id="password"
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
 
               <div className="signup-form-group">
                 <label htmlFor="password">Confirm Password</label>
                 <input
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                   type="password"
                   placeholder="Confirm your password"
-                  id="password"
+                  id="confirmPassword"
                 />
               </div>
 
               <div className="terms-conditions">
                 <div className="remember-me">
-                  <input type="checkbox" name="checkBox" id="checkBox" />
+                  <input
+                    type="checkbox"
+                    id="agreeTerms"
+                    checked={agreeTerms}
+                    onChange={(e) => setAgreeTerms(e.target.checked)}
+                  />
                   <p>
                     I agree to the{" "}
                     <NavLink to="/" className="text-color">
@@ -78,7 +148,9 @@ function SignUp() {
                 </div>
               </div>
               <div className="sign-up-btn">
-                <Button variant="contained">Sign Up</Button>
+                <Button variant="contained"
+                  onClick={handleSignUp}
+                >Sign Up</Button>
               </div>
 
               <div className="signup-divider">

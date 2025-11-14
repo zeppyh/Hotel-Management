@@ -5,6 +5,7 @@ function Home() {
     <>
       <div className="bg-image">
         <img src="./src/assets/home-page-bg.png" alt="" />
+        {/* EDIT FOR STORAGE*/}
       </div>
       <div className="image-trade-name">
         <h1>Casa Diwa</h1>

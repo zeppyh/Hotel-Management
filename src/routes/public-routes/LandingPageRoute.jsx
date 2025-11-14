@@ -2,10 +2,10 @@ import { Outlet } from "react-router";
 import NavBar from "../../components/Navbar/NavBar";
 import Footer from "../../components/Footer/Footer";
 
-function LandingPageRoute() {
+function LandingPageRoute({user}) {
   return (
     <>
-      <NavBar />
+      <NavBar user={user} />
       <main>
         <Outlet />
       </main>

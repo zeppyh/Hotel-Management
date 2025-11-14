@@ -9,6 +9,7 @@ function LandingPage() {
     {
       id: 1,
       image: "./src/assets/sustainability.jpg",
+      // EDIT FOR STORAGE
       title: "Sustainability",
       paragraph:
         "We honor the earth through eco-conscious practices and locally-sourced materials",
@@ -16,6 +17,8 @@ function LandingPage() {
     {
       id: 2,
       image: "./src/assets/community.jpg",
+      // EDIT FOR STORAGE
+
       title: "Community",
       paragraph:
         "Supporting local artisans and celebrating Filipino craftsmanship in every detail.",
@@ -23,6 +26,8 @@ function LandingPage() {
     {
       id: 3,
       image: "./src/assets/mindfulness.jpg",
+      // EDIT FOR STORAGE
+
       title: "Mindfulness",
       paragraph:
         "Creating spaces that encourage presence, reflection, and genuine connection.",
@@ -32,6 +37,8 @@ function LandingPage() {
     {
       id: 1,
       image: "./src/assets/standard-room.jpg",
+      // EDIT FOR STORAGE
+
       roomName: "Standard Rooms",
       roomDescription:
         "Cozy and intimate space with Filipino-inspired minimalist design. Perfect for solo travelers or couples seeking tranquility.",
@@ -43,6 +50,8 @@ function LandingPage() {
     {
       id: 2,
       image: "./src/assets/deluxe-suite.jpg",
+      // EDIT FOR STORAGE
+
       roomName: "Deluxe Suite",
       roomDescription:
         "Spacious retreat with natural materials and abundant sunlight. Experience comfort elevated by thoughtful design.",
@@ -54,6 +63,8 @@ function LandingPage() {
     {
       id: 3,
       image: "./src/assets/executive-suite.jpg",
+      // EDIT FOR STORAGE
+
       roomName: "Executive Suite",
       roomDescription:
         "Spacious retreat with natural materials and abundant sunlight. Experience comfort elevated by thoughtful design.",

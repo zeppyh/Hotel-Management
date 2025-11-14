@@ -1,9 +1,29 @@
 import { NavLink } from "react-router";
 import { Button } from "@mui/material";
 import { ArrowLeft } from "lucide-react";
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../../firebase-config';
+import { useState } from 'react';
 import "./log-in.css";
 
+
 function Login() {
+
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  function handleLogin() {
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        window.location.href = "/";
+      })
+      .catch((err) => {
+        alert(err.message)
+      })
+
+
+  };
+
   return (
     <>
       <div className="login-page">
@@ -23,6 +43,7 @@ function Login() {
               <div className="form-group">
                 <label htmlFor="emailAddress">Email Address</label>
                 <input
+                  onChange={(e) => setEmail(e.target.value)}
                   type="text"
                   placeholder="Enter your email"
                   id="password"
@@ -32,6 +53,7 @@ function Login() {
               <div className="form-group">
                 <label htmlFor="password">Password</label>
                 <input
+                  onChange={(e) => setPassword(e.target.value)}
                   type="password"
                   placeholder="Enter your password"
                   id="password"
@@ -50,7 +72,7 @@ function Login() {
             </div>
 
             <div className="login-btn">
-              <Button variant="contained">Login</Button>
+              <Button onClick={handleLogin} variant="contained">Login</Button>
             </div>
 
             <div className="login-divider">
