@@ -13,7 +13,6 @@ function Overview() {
   function createData(bookId, guestName, roomType, checkIn, status) {
     return { bookId, guestName, roomType, checkIn, status };
   }
-
   const rows = [
     createData(
       "CDW-A1B2C3",

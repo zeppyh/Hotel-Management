@@ -1,27 +1,38 @@
-import { NavLink } from "react-router";
+import { NavLink } from "react-router"; // <-- No need for useNavigate
 import { Button } from "@mui/material";
 import { ArrowLeft } from "lucide-react";
 import { signInWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../../firebase-config';
+import { auth, db } from '../../firebase-config';
+import { get, ref } from 'firebase/database';
 import { useState } from 'react';
 import "./log-in.css";
 
-
 function Login() {
-
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   function handleLogin() {
     signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        window.location.href = "/";
-      })
-      .catch((err) => {
-        alert(err.message)
-      })
+      .then((userCredential) => {
+        const user = userCredential.user;
+        const userRef = ref(db, `users/${user.uid}`);
 
+        get(userRef).then((snapshot) => {
+          if (snapshot.exists() && snapshot.val().role === 'admin') {
+            window.location.href = "/AdminPannel/Overview";
+          } else {
+            window.location.href = "/";
+          }
+        }).catch((dbError) => {
+          console.error("Error fetching user data:", dbError);
+          alert("Login successful, but couldn't get user role. Sending to home.");
+          window.location.href = "/"; 
+        });
 
+      })
+      .catch((authError) => {
+        alert(authError.message);
+      });
   };
 
   return (
@@ -46,7 +57,7 @@ function Login() {
                   onChange={(e) => setEmail(e.target.value)}
                   type="text"
                   placeholder="Enter your email"
-                  id="password"
+                  id="password" 
                 />
               </div>
 

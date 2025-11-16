@@ -7,8 +7,17 @@ import {
   LogOut,
 } from "lucide-react";
 import "./sidebar.css";
+import { auth } from "../../../firebase-config";
 
 function Sidebar({ children }) {
+
+  function logOut() {
+    auth.signOut();
+    alert("Logged out successfully");
+
+  }
+
+
   return (
     <>
       <div className="sidebar-container">
@@ -53,9 +62,9 @@ function Sidebar({ children }) {
           </div>
           <div className="log-out-btn">
             <div className="bottom-divider"></div>
-            <NavLink to="/" className="logout-btn">
+            <NavLink onClick={logOut} to="/" className="logout-btn">
               <LogOut strokeWidth={1.75} className="logout-icon" />
-              <span>Logout</span>
+              <span >Logout</span>
             </NavLink>
           </div>
         </div>
