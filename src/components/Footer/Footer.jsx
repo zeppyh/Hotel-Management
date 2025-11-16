@@ -1,6 +1,6 @@
 import { Link } from "react-scroll";
 import "./footer.css";
-import { Facebook } from "lucide-react";
+import { Facebook, Instagram, Mail } from "lucide-react";
 
 function Footer() {
   return (
@@ -20,25 +20,25 @@ function Footer() {
                 embrace.
               </p>
               <div className="footer-icons">
-                <div>
+                <div className="icons-bg">
                   <Facebook
-                    strokeWidth={3}
+                    strokeWidth={1.75}
                     color="white"
                     size={35}
                     className="footer-icon"
                   />
                 </div>
-                <div>
-                  <Facebook
-                    strokeWidth={3}
+                <div className="icons-bg">
+                  <Instagram
+                    strokeWidth={1.75}
                     color="white"
                     size={35}
                     className="footer-icon"
                   />
                 </div>
-                <div>
-                  <Facebook
-                    strokeWidth={3}
+                <div className="icons-bg">
+                  <Mail
+                    strokeWidth={1.75}
                     color="white"
                     size={35}
                     className="footer-icon"

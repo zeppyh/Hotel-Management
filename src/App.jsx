@@ -3,6 +3,10 @@ import LandingPage from "./page/LandingPage/LandingPage";
 import SignUpPage from "./page/SignUpPage/SignUpPage";
 import LoginPage from "./page/LoginPage/LoginPage";
 import LandingPageRoute from "./routes/public-routes/LandingPageRoute";
+import Admin from "./page/AdminPannel/Admin";
+import UserPanel from "./routes/private-routes/UserPanel";
+import Overview from "./components/AdminFeatures/Overview/Overview";
+import Booking from "./components/AdminFeatures/Bookings/Booking";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, onValue } from "firebase/database";
@@ -44,14 +48,6 @@ function App() {
           </Route>
 
           <Route path="/SignUpPage" element={<SignUpPage />} />
-          <Route path="/LoginPage" element={<LoginPage />} />
-
-          {/* {user && (
-            <Route path="/profile" element={<BOOKING />} />
-          )} ACCESSIBLE LNG PAG NAKA LOGGED IN AND FOR BOOKING */}
-
-
-
         </Routes>
       </BrowserRouter>
     </>
