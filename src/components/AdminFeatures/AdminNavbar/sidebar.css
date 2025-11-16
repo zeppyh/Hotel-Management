@@ -1,0 +1,120 @@
+.sidebar-container {
+  display: flex;
+  background-color: #ffffff;
+  height: 100vh;
+}
+
+.sidebar-content {
+  width: 340px;
+}
+
+.sidebar-header img {
+  position: relative;
+  top: -5px;
+  width: 60px;
+  height: 60px;
+}
+
+.sidebar-header {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #e4d5c7;
+}
+
+.header {
+  display: flex;
+  padding: 20px 0px 0px 20px;
+  gap: 5px;
+  margin-bottom: -10px;
+}
+
+.header h1 {
+  color: #4a5a47;
+  font-family: Inter;
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.sidebar-header p {
+  position: relative;
+  top: -28px;
+  left: 87px;
+  color: #8b7355;
+  font-size: 14px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px 15px 20px;
+}
+
+.links {
+  font-size: 18px;
+  color: #4a5a47;
+}
+
+.nav .links {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 90%;
+  border-radius: 20px;
+  padding: 10px 20px 10px 20px;
+}
+
+.nav .links:hover {
+  color: #ffffff;
+  background: #4a5a47;
+}
+
+.nav .links.active {
+  color: #ffffff;
+  background: #4a5a47;
+}
+
+.log-out-btn {
+  display: flex;
+}
+
+.bottom-divider {
+  height: 1px;
+  margin: 20px;
+  background: #000000;
+}
+
+.log-out-btn {
+  display: flex;
+  flex-direction: column;
+}
+
+.bottom-divider {
+  margin-top: 500px;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  padding: 20px 0px 0px 50px;
+  gap: 10px;
+}
+
+.logout-btn {
+  color: #be813c;
+}
+
+.icons {
+  width: 18px;
+  height: 18px;
+}
+
+.main-content {
+  /* This is the key: tells the element to consume all leftover space */
+  flex-grow: 1;
+
+  /* Set the background color for the content area to match the image */
+  background-color: #f5efe7;
+
+  /* Optional: Ensures content can scroll if it overflows vertically */
+  overflow-y: auto;
+}

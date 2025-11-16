@@ -1,0 +1,181 @@
+.overview-container {
+  height: 100vh;
+  padding: 0px 50px 0px 20px;
+  background-color: #f5efe7;
+}
+.overview-header h1 {
+  font-family: Inter;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.overview-header p {
+  font-size: 20px;
+  color: #8b7355;
+}
+
+.cards-row {
+  display: flex;
+  justify-content: space-evenly;
+  height: 200px;
+  margin-left: -50px;
+  gap: 20px;
+}
+
+.dashboard-card {
+  background: #4a5a47;
+  color: white;
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid #8b7355;
+  margin-top: 30px;
+  background-color: #ffffff;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.content span {
+  position: relative;
+  top: -10px;
+  color: #8b7355;
+  width: 100px;
+}
+
+.changes {
+  width: 100px;
+}
+
+.changes p {
+  padding-top: 20px;
+  font-size: 14px;
+  color: #00a63e;
+}
+
+.value p {
+  position: relative;
+  top: -10px;
+  color: #000000;
+  font-size: 20px;
+}
+
+.calendar-icon {
+  position: relative;
+  left: -15px;
+  padding: 10px;
+  border-radius: 15px;
+  background-color: #5773ff;
+}
+
+.chart-container {
+  display: flex;
+  gap: 20px;
+  padding: 30px;
+}
+.chart-content {
+  height: 470px;
+  padding: 20px;
+  width: 605px;
+  border: 1px solid #e4d5c7;
+  border-radius: 18px;
+  background-color: #ffffff;
+}
+
+.chart-header p {
+  color: #4a5a47;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 0px 0px 40px;
+}
+
+.line-chart-container {
+  display: flex;
+}
+
+.line-chart-content {
+  height: 470px;
+  padding: 20px;
+  width: 605px;
+  border: 1px solid #e4d5c7;
+  border-radius: 18px;
+  background-color: #ffffff;
+}
+
+.line-chart-header p {
+  color: #4a5a47;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 0px 0px 40px;
+}
+
+.recent-bookings-container {
+  display: flex;
+  padding: 20px 20px 50px 30px;
+}
+
+.recent-bookings-content {
+  height: 457px;
+  padding: 20px;
+  width: 820px;
+  border: 1px solid #e4d5c7;
+  border-radius: 18px;
+  background-color: #ffffff;
+}
+
+.recent-bookings-header p {
+  color: #4a5a47;
+  font-weight: 400;
+  font-size: 16px;
+  padding: 0px 0px 40px;
+}
+
+.booking-status-container {
+  display: flex;
+  padding: 0px 20px 30px 30px;
+}
+
+.booking-status-content {
+  height: 457px;
+  padding: 20px;
+  width: 380px;
+  border: 1px solid #e4d5c7;
+  border-radius: 18px;
+  background-color: #ffffff;
+}
+
+.booking-status-header p {
+  color: #4a5a47;
+  font-weight: 400;
+  font-size: 16px;
+  padding: 0px 0px 40px;
+}
+
+.status-content {
+  display: flex;
+  gap: 100px;
+  padding: 10px;
+}
+
+.status-content p {
+  font-size: 14px;
+  color: #8b7355;
+}
+
+.content p {
+  color: #4a5a47;
+}
+
+.dot {
+  display: flex;
+  align-items: center;
+
+  width: 100px;
+  gap: 10px;
+}
+
+.status {
+  margin-top: 20px;
+}
