@@ -1,22 +1,25 @@
+/* =======================
+   HERO IMAGE
+   ======================= */
 .bg-image img {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  position: relative;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
+  height: auto; 
+  object-fit: cover;
   opacity: 50%;
 }
 
 .image-trade-name {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
   position: absolute;
   top: 30%;
   left: 4%;
-  font-size: 25px;
+  display: flex;
+  flex-direction: column;
   gap: 25px;
+  text-align: left;
 }
 
 .image-trade-name h1 {
@@ -33,10 +36,10 @@
   color: #6c7a51;
 }
 
+/* =======================
+   BOOK NOW BUTTON
+   ======================= */
 .book-btn {
-  border-radius: 30px;
-  padding: 10px 40px;
-  font-family: Inter;
   position: absolute;
   top: 80%;
   left: 43%;
@@ -46,11 +49,121 @@
   background-color: #ae5c20;
   font-size: 20px;
   border-radius: 30px;
-  padding: 5px 40px;
-  font-family: Inter;
-  text-transform: none;
+  padding: 8px 40px;
+  transition: 0.2s;
 }
 
 .book-btn button:hover {
   background-color: #d4712b;
+}
+
+/* ============================================
+   RESPONSIVE STYLES
+   ============================================ */
+
+/* LARGE SCREENS / DESKTOPS (default styles apply) */
+
+/* Tablets and smaller desktops (1024px and below) */
+@media (max-width: 1024px) {
+  .image-trade-name {
+    top: 28%;
+    left: 5%;
+  }
+
+  .image-trade-name h1 {
+    font-size: 70px;
+  }
+
+  .book-btn {
+    top: 75%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .book-btn button {
+    font-size: 18px;
+    padding: 8px 35px;
+  }
+}
+
+/* Tablets + Large Phones (768px and below) */
+@media (max-width: 768px) {
+  .image-trade-name {
+    top: 25%;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    align-items: center;
+  }
+
+  .image-trade-name h1 {
+    font-size: 50px;
+  }
+
+  .image-trade-name h2 {
+    font-size: 22px;
+  }
+
+  .image-trade-name p {
+    font-size: 16px;
+  }
+
+  .book-btn {
+    top: 70%;
+  }
+
+  .book-btn button {
+    font-size: 16px;
+    padding: 8px 30px;
+  }
+}
+
+/* Mobile Phones (576px and below) */
+@media (max-width: 576px) {
+  .image-trade-name {
+    top: 20%;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    padding: 0 15px;
+  }
+
+  .image-trade-name h1 {
+    font-size: 38px;
+  }
+
+  .image-trade-name h2 {
+    font-size: 20px;
+  }
+
+  .image-trade-name p {
+    font-size: 14px;
+  }
+
+  .book-btn {
+    top: 65%;
+  }
+
+  .book-btn button {
+    font-size: 16px;
+    padding: 8px 25px;
+  }
+}
+
+/* Extra Small Phones (360px and below) */
+@media (max-width: 360px) {
+  .image-trade-name h1 {
+    font-size: 30px;
+  }
+
+  .image-trade-name h2 {
+    font-size: 16px;
+  }
+
+  .book-btn button {
+    font-size: 14px;
+    padding: 6px 20px;
+  }
 }

@@ -10,8 +10,28 @@
   left: 0;
   right: 0;
   z-index: 1000;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
 }
 
+/* Logo */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo-container img {
+  width: 85px;
+  height: 85px;
+  border-radius: 100%;
+  box-shadow: 0px 5px 4px #cec3c3;
+}
+
+.logo-container h1 {
+  text-shadow: 0px 3px 5px rgba(133, 130, 130, 0.3);
+}
+
+/* Desktop Links */
 .link {
   display: flex;
   align-items: center;
@@ -33,23 +53,7 @@
   color: #ba6930;
 }
 
-.logo-container {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.logo-container h1 {
-  text-shadow: 0px 3px 5px rgba(133, 130, 130, 0.3);
-}
-
-.logo-container img {
-  width: 85px;
-  height: 85px;
-  border-radius: 100%;
-  box-shadow: 0px 5px 4px #cec3c3;
-}
-
+/* Sign Up button */
 .sign-up-btn button {
   background-color: #975a2f;
   font-size: 20px;
@@ -61,4 +65,82 @@
 
 .sign-up-btn button:hover {
   background-color: #d4712b;
+}
+
+
+
+/*         MOBILE VERSION           */
+
+@media (max-width: 900px) {
+  /* container */
+  .nav-bar-container {
+    padding: 10px 20px;
+  }
+
+  /* hide desktop nav */
+  .link ul {
+    display: none;
+  }
+
+  .sign-up-btn {
+    display: none;
+  }
+
+  /* hamburger button */
+  .hamburger {
+    display: block;
+    font-size: 32px;
+    cursor: pointer;
+    color: #975a2f;
+  }
+
+  /* MOBILE MENU PANEL */
+  .mobile-menu {
+    position: fixed;
+    top: 80px;
+    right: 0;
+    width: 70%;
+    height: auto;
+    padding: 30px;
+    background: #fffdf4;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    font-size: 20px;
+
+    transform: translateX(100%);
+    transition: 0.3s ease-in-out;
+    z-index: 2000;
+  }
+
+  /* when menu is open */
+  .mobile-menu.open {
+    transform: translateX(0);
+  }
+
+  .mobile-menu a {
+    color: #808d68;
+  }
+
+  .mobile-menu a:hover {
+    color: #ba6930;
+  }
+}
+
+/* Ultra-Small Phones */
+@media (max-width: 480px) {
+  .logo-container img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .logo-container h1 {
+    font-size: 20px;
+  }
+
+  .hamburger {
+    font-size: 28px;
+  }
 }

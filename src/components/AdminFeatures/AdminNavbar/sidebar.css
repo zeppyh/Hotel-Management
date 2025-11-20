@@ -118,3 +118,190 @@
   /* Optional: Ensures content can scroll if it overflows vertically */
   overflow-y: auto;
 }
+
+
+/*   DESKTOP DEFAULT STYLE   */
+.sidebar-container {
+  display: flex;
+  background-color: #ffffff;
+  height: 100vh;
+}
+
+.sidebar-content {
+  width: 340px;
+  background-color: #ffffff;
+  border-right: 1px solid #e4d5c7;
+}
+
+.sidebar-header {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-bottom: 1px solid #e4d5c7;
+}
+
+.sidebar-header img {
+  width: 60px;
+  height: 60px;
+}
+
+.header {
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.header h1 {
+  color: #4a5a47;
+  font-family: Inter;
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.sidebar-header p {
+  margin-top: -5px;
+  color: #8b7355;
+  font-size: 14px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+}
+
+.nav .links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  width: 100%;
+  padding: 12px 20px;
+  border-radius: 12px;
+  color: #4a5a47;
+}
+
+.nav .links:hover {
+  background: #4a5a47;
+  color: #ffffff;
+}
+
+.nav .links.active {
+  background: #4a5a47;
+  color: #ffffff;
+}
+
+/* Logout Area */
+.bottom-divider {
+  height: 1px;
+  background: #00000033;
+  margin: 20px auto;
+  width: 80%;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 20px;
+  color: #be813c;
+  cursor: pointer;
+}
+
+.icons {
+  width: 18px;
+  height: 18px;
+}
+
+/* Main content grows to fill extra space */
+.main-content {
+  flex-grow: 1;
+  background-color: #f5efe7;
+  overflow-y: auto;
+}
+/*                  TABLETS                   */
+/*        (Sidebar shrinks a little)          */
+@media (max-width: 1024px) {
+  .sidebar-content {
+    width: 280px;
+  }
+
+  .header h1 {
+    font-size: 20px;
+  }
+
+  .nav .links {
+    font-size: 16px;
+    padding: 10px 16px;
+  }
+
+  .logout-btn {
+    padding-left: 30px;
+  }
+}
+
+
+
+
+/*                MOBILE VIEW                 */
+/*    Sidebar becomes a overlay drawer        */
+
+@media (max-width: 768px) {
+
+  /* Sidebar slides in/out */
+  .sidebar-content {
+    position: fixed;
+    left: -100%;
+    top: 0;
+    height: 100vh;
+    width: 260px;
+    background: #ffffff;
+    transition: all 0.3s ease-in-out;
+    z-index: 2000;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+  }
+
+  /* When sidebar is open (add a class via React state) */
+  .sidebar-content.open {
+    left: 0;
+  }
+
+  /* Main content full width */
+  .main-content {
+    width: 100%;
+  }
+
+  /* Text resizing */
+  .header h1 {
+    font-size: 18px;
+  }
+
+  .nav .links {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .bottom-divider {
+    margin-top: 20px;
+  }
+
+  /* Add mobile hamburger from your React component */
+}
+/*          EXTRA SMALL PHONES (360px)        */
+@media (max-width: 360px) {
+  .sidebar-content {
+    width: 220px;
+  }
+
+  .header h1 {
+    font-size: 16px;
+  }
+
+  .nav .links {
+    font-size: 14px;
+  }
+
+  .logout-btn {
+    font-size: 14px;
+  }
+}

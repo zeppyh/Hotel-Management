@@ -3,7 +3,8 @@
   padding: 80px;
   justify-content: space-evenly;
   background-color: #fffdf6;
-  height: 100vh;
+  min-height: 250vh;
+  height: auto;
   gap: 30px;
 }
 
@@ -104,4 +105,145 @@
   align-items: center;
   padding: 80px;
   color: #ae5c20;
+}
+
+/* 
+   TABLET (1024px and below)
+   */
+@media (max-width: 1024px) {
+  .about-us-container {
+    padding: 40px;
+    gap: 20px;
+    height: auto; 
+    flex-wrap: wrap;
+  }
+
+  .our-story-info h3 {
+    width: 100%;
+    font-size: 40px;
+  }
+
+  .values-card {
+    width: 100%;
+    margin-top: 80px;
+  }
+
+  .our-values p {
+    margin-left: 40px;
+  }
+}
+
+/* 
+   LARGE PHONES / SMALL TABLETS (768px)
+    */
+@media (max-width: 768px) {
+  .about-us-container {
+    flex-direction: column;
+    padding: 30px;
+    height: auto;
+  }
+
+  .our-story-info {
+    gap: 30px;
+  }
+
+  .our-story-info h3 {
+    font-size: 32px;
+    width: 100%;
+  }
+
+  .about-us-container p {
+    font-size: 18px;
+  }
+
+  .values-card {
+    margin-top: 40px;
+    width: 100%;
+  }
+
+  .values {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .our-values p {
+    margin-left: 20px;
+    font-size: 16px;
+  }
+
+  .icons h5 {
+    font-size: 24px;
+  }
+
+  .icons p {
+    font-size: 14px;
+  }
+
+  .rating {
+    padding: 40px;
+  }
+}
+
+/* 
+   MOBILE PHONES (576px and below)
+   */
+@media (max-width: 576px) {
+  .about-us-container {
+    padding: 20px;
+  }
+
+  .our-story-info h3 {
+    font-size: 28px;
+  }
+
+  .values-card {
+    margin-top: 20px;
+  }
+
+  .values img {
+    width: 40px;
+  }
+
+  .values h2 {
+    font-size: 24px;
+  }
+
+  .our-values {
+    padding: 20px;
+  }
+
+  .our-values p {
+    margin-left: 10px;
+    font-size: 15px;
+  }
+
+  .icons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .icons h5 {
+    font-size: 20px;
+  }
+
+  .rating {
+    padding: 20px;
+  }
+}
+
+/* 
+   SMALL DEVICES (360px and below)
+   */
+@media (max-width: 360px) {
+  .our-story-info h3 {
+    font-size: 24px;
+  }
+
+  .about-us-container p {
+    font-size: 14px;
+  }
+
+  .values img {
+    width: 35px;
+  }
 }

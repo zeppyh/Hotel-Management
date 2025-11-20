@@ -2,15 +2,15 @@
   display: flex;
   justify-content: space-around;
   background-color: #819471;
-  height: 560px;
+  padding: 60px 40px;
   flex-wrap: wrap;
-  padding: 0 40px;
+  gap: 40px;
 }
 
+/* Left Section */
 .footer-header {
   display: flex;
   gap: 15px;
-  padding-top: 60px;
 }
 
 .footer-content img {
@@ -20,28 +20,28 @@
 
 .footer-content h1 {
   color: #ffffff;
-  font-size: 36px;
+  font-size: 32px;
 }
 
 .footer-container p {
-  width: 650px;
+  max-width: 500px;
   color: #ffffff;
 }
 
+/* Social Icons */
 .footer-icons {
   display: flex;
   padding-top: 20px;
-  gap: 30px;
+  gap: 20px;
 }
 
 .footer-icon {
   padding: 10px;
 }
 
+/* Quick Links */
 .links-header {
-  display: flex;
-  font-weight: 500;
-  padding-top: 70px;
+  padding-top: 20px;
 }
 
 .links-header h2 {
@@ -54,65 +54,63 @@
 }
 
 .quickLinks li {
-  display: flex;
-  font-size: 20px;
+  font-size: 18px;
   opacity: 0.9;
   font-weight: 400;
-  padding-top: 30px;
+  padding-top: 15px;
   cursor: pointer;
 }
 
+/* Contact Section */
 .contact-content {
   display: flex;
-  gap: 30px;
+  gap: 10px;
   flex-direction: column;
 }
 
 .contact-content p {
-  width: 200px;
+  max-width: 220px;
   font-size: 16px;
   opacity: 0.8;
-  padding-top: 5px;
 }
 
+/* Content Header */
 .content-header {
-  padding-top: 70px;
   font-size: 20px;
 }
 
 .content-header h2 {
-  font-size: 16px;
+  font-size: 18px;
   color: #ffffff;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .email-link {
   opacity: 0.8;
   color: #ffffff;
 }
-
 .email-link:hover {
   text-decoration: underline;
 }
 
-.footer-logo-container p {
-  opacity: 0.8;
-}
-
+/* Divider */
 .footer-divider {
   height: 1px;
   background-color: #ffffff99;
-  width: 50%;
-  margin: 0 auto;
+  width: 90%;
+  margin: 40px auto;
 }
 
+/* Bottom */
 .footer-bottom {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: #819471;
   color: white;
-  height: 120px;
-  padding: 20px 60px;
+  padding: 20px 40px;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .footer-bottom p {
@@ -124,7 +122,61 @@
   text-decoration: none;
   margin-left: 20px;
 }
-
 .footer-bottom-links a:hover {
   text-decoration: underline;
+}
+
+
+/* ------------------------------- */
+/*        RESPONSIVENESS          */
+/* ------------------------------- */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .footer-container {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .footer-container p {
+    max-width: 100%;
+  }
+
+  .footer-icons {
+    justify-content: center;
+  }
+
+  .quickLinks li {
+    text-align: center;
+  }
+}
+
+/* Phones */
+@media (max-width: 600px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-header {
+    justify-content: center;
+  }
+
+  .quickLinks li {
+    padding-top: 10px;
+  }
+
+  .contact-content {
+    text-align: center;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-bottom-links a {
+    margin-left: 10px;
+  }
 }

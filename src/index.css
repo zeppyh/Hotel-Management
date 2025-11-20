@@ -27,3 +27,113 @@ html {
 input {
   outline: none;
 }
+
+/* ================================
+   RESPONSIVE TYPOGRAPHY & ELEMENTS
+   ================================ */
+
+/* Desktop default */
+h1,
+h2 {
+  font-size: 40px;
+}
+
+p {
+  font-size: 24px;
+}
+
+/* ================================
+   TABLET (1024px and below)
+   ================================ */
+@media (max-width: 1024px) {
+  h1,
+  h2 {
+    font-size: 32px;
+  }
+
+  p {
+    font-size: 20px;
+  }
+}
+
+/* ================================
+   LARGE PHONES / SMALL TABLETS (768px)
+   ================================ */
+@media (max-width: 768px) {
+  h1,
+  h2 {
+    font-size: 28px;
+  }
+
+  p {
+    font-size: 18px;
+  }
+
+  section,
+  .container,
+  .row {
+    padding: 0 16px;
+  }
+}
+
+/* ================================
+   MOBILE PHONES (576px)
+   ================================ */
+@media (max-width: 576px) {
+  h1,
+  h2 {
+    font-size: 24px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  body {
+    padding: 0 12px;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+/*sa phones*/
+
+@media (max-width: 360px) {
+  h1,
+  h2 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+}
+
+/* ----------- Mobile (phones) ----------- */
+@media (max-width: 600px) {
+  h1, h2 {
+    font-size: 28px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+}
+
+/* ----------- Tablets ----------- */
+@media (max-width: 900px) {
+  h1, h2 {
+    font-size: 34px;
+  }
+
+  p {
+    font-size: 18px;
+  }
+}

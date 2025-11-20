@@ -3,7 +3,8 @@ body {
 }
 
 .room-suites-container {
-  height: 100vh;
+ min-height: 100vh;
+ height: auto; 
 }
 
 .room-suites-header {
@@ -44,4 +45,116 @@ h4 {
   justify-content: center;
   gap: 150px;
   padding: 20px;
+}
+
+.room-card {
+  display: flex;
+  justify-content: center;
+  gap: 150px;
+  padding: 20px;
+  flex-wrap: wrap; /* allows cards to wrap on smaller screens */
+}
+
+.room-card .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 300px; /* fixed width for consistency */
+}
+
+.room-card .card button {
+  margin-top: 20px;
+  align-self: center;
+  padding: 10px 30px;
+  font-size: 18px;
+  border-radius: 25px;
+}
+
+/* ---------- Large Tablets / Small Desktops (900px and below) ---------- */
+@media (max-width: 900px) {
+  .room-card {
+    gap: 60px;
+    justify-content: space-around;
+  }
+
+  .title h2 {
+    font-size: 48px;
+  }
+
+  .title p {
+    font-size: 18px;
+  }
+
+  .room-card .card {
+    width: 250px;
+  }
+
+  .room-card .card button {
+    font-size: 16px;
+    padding: 8px 25px;
+  }
+}
+
+/* ---------- Tablets / Large Phones (768px and below) ---------- */
+@media (max-width: 768px) {
+  .room-card {
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .title h2 {
+    font-size: 40px;
+  }
+
+  .title p {
+    font-size: 16px;
+  }
+
+  .room-card .card {
+    width: 80%; /* cards stretch for better visibility */
+  }
+
+  .room-card .card button {
+    width: 60%;
+  }
+}
+
+/* ---------- Mobile Devices (600px and below) ---------- */
+@media (max-width: 600px) {
+  .title h2 {
+    font-size: 32px;
+  }
+
+  .title p {
+    font-size: 14px;
+  }
+
+  .room-card .card button {
+    width: 70%;
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+}
+
+/* ---------- Small Phones (360px and below) ---------- */
+@media (max-width: 360px) {
+  .title h2 {
+    font-size: 28px;
+  }
+
+  .title p {
+    font-size: 12px;
+  }
+
+  .room-card .card {
+    width: 90%;
+  }
+
+  .room-card .card button {
+    width: 80%;
+    padding: 6px 15px;
+    font-size: 12px;
+  }
 }

@@ -2,7 +2,8 @@
   display: flex;
   padding: 80px;
   justify-content: space-evenly;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto; 
 }
 
 .contact-us-header {
@@ -224,4 +225,128 @@
 
 .send-message-btn button:hover {
   background-color: #d4712b;
+}
+
+/* =======================
+   📱 MOBILE VIEW
+   ======================= */
+@media (max-width: 600px) {
+  .contact-us-container {
+    flex-direction: column;
+    padding: 20px;
+    height: auto;
+    gap: 40px;
+  }
+
+  .contact-title h3 {
+    width: 100%;
+    font-size: 32px;
+    text-align: center;
+  }
+
+  .contact-title p {
+    width: 100%;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .contacts {
+    width: 100%;
+    gap: 20px;
+  }
+
+  .contact-details {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .contact-details p,
+  .contact-details h2 {
+    font-size: 18px;
+  }
+
+  .contact-info {
+    padding-top: 20px;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .contact-info p {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .operating-hour {
+    width: 100%;
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  .weekdays,
+  .weekends {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .contact-form {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    padding: 20px;
+  }
+
+  .contact-form h2 {
+    text-align: center;
+    font-size: 26px;
+    padding-bottom: 20px;
+  }
+
+  .fullName-form {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form input,
+  .message-inquiry textarea {
+    font-size: 18px;
+    padding: 15px;
+  }
+
+  .send-message-btn button {
+    font-size: 20px;
+    padding: 15px;
+  }
+}
+
+/* =======================
+   📱 TABLET VIEW
+   ======================= */
+@media (max-width: 900px) {
+  .contact-us-container {
+    flex-direction: column;
+    padding: 40px;
+    height: auto;
+    gap: 60px;
+  }
+
+  .contact-title h3 {
+    font-size: 40px;
+    text-align: center;
+  }
+
+  .contact-title p {
+    text-align: center;
+  }
+
+  .contact-info {
+    gap: 30px;
+    align-items: center;
+  }
+
+  .contact-form {
+    width: 100%;
+    padding: 30px;
+  }
 }

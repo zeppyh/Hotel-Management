@@ -168,3 +168,45 @@
   position: relative;
   top: 2px;
 }
+
+/* Phones */
+@media (max-width: 600px) {
+  .login-container {
+    padding: 30px 25px;
+    max-width: 100%;
+  }
+
+  .login-header img {
+    width: 75px;
+    height: 75px;
+  }
+
+  .login-header h1 {
+    font-size: 26px;
+    max-width: 280px;
+  }
+
+  .form-group input {
+    height: 50px;
+    font-size: 16px;
+  }
+
+  .login-option {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .login-btn Button {
+    font-size: 18px;
+  }
+
+  .login-divider p {
+    font-size: 13px;
+  }
+
+  .login-sign-up-btn p,
+  .signup-btn {
+    font-size: 14px;
+  }
+}
