@@ -46,6 +46,12 @@ function LandingPage() {
       sqm: "25",
       view: "Garden View",
       price: "3,500",
+      amenities: {
+        wifi: "Free Wifi",
+        airConditon: "Air Conditioning",
+        tv: "TV",
+        bathroom: "Private Bathroom",
+      },
     },
     {
       id: 2,
@@ -59,6 +65,13 @@ function LandingPage() {
       sqm: "40 sqm",
       view: "Balcony",
       price: "5,800",
+      amenities: {
+        wifi: "Free Wifi",
+        airConditon: "Air Conditioning",
+        tv: "TV",
+        breakfast: "Breakfast Included",
+        balcony: "Balcony",
+      },
     },
     {
       id: 3,
@@ -72,6 +85,14 @@ function LandingPage() {
       sqm: "60 sqm",
       view: "Private Terrace",
       price: "8,900",
+      amenities: {
+        wifi: "Free Wifi",
+        airConditon: "Air Conditioning",
+        tv: "TV",
+        breakfast: "Breakfast Included",
+        livingArea: "Living Area",
+        view: "Ocean View",
+      },
     },
   ]);
   return (

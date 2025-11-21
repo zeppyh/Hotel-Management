@@ -1,0 +1,155 @@
+.book-process-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 50px 20px;
+  min-height: 100vh;
+  background-color: #fdf6eb; /* light beige background */
+}
+
+.book-step-card {
+  background-color: #ffffff;
+  width: 100%;
+  padding: 20px;
+  margin-top: 30px;
+  border-radius: 25px;
+  box-shadow: 0 4px 12px #00000014;
+  display: flex;
+  flex-direction: column;
+}
+
+.date-guest-wrapper {
+  text-align: center;
+  width: 800px;
+}
+
+/* Title */
+.title {
+  margin-bottom: 50px;
+  font-size: 18px;
+  font-weight: 400;
+  color: #6c7a51;
+}
+
+/* Labels */
+.form-group label {
+  display: block;
+  text-align: left;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  color: #6c7a51;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+/* Date Field Box */
+.input-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d8a788;
+  border-radius: 25px;
+  height: 50px;
+}
+
+.input-box input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+  color: #555;
+  background: transparent;
+}
+
+.icon {
+  margin-left: 20px;
+  font-size: 18px;
+  opacity: 0.6;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  text-align: baseline;
+  border-radius: 20px;
+  border: 1px solid #c5a690;
+  outline: none;
+  color: #555;
+}
+
+/* Two-column row */
+.row {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.half {
+  flex: 1;
+}
+
+.half label {
+  position: relative;
+  top: -15px;
+  font-weight: 500;
+  font-size: 20px;
+  color: #b27950;
+}
+
+/* Button */
+.check-btn {
+  width: 100%;
+  background: #6e7f50;
+  color: white;
+  border: none;
+  padding: 13px 0;
+  font-size: 15px;
+  border-radius: 30px;
+  margin-top: 25px;
+  cursor: pointer;
+}
+.check-btn:hover {
+  background: #5e6f45;
+}
+
+.MuiStepLabel-iconContainer {
+  border-radius: 100%;
+  transform: scale(3);
+}
+
+.MuiStepConnector-root {
+  display: none;
+}
+
+.MuiStepper-root {
+  padding: 50px 0px;
+}
+
+.MuiStepLabel-labelContainer {
+  margin-top: 8px;
+  display: block;
+  text-align: center;
+}
+
+.input-box {
+  position: relative;
+}
+
+.input-box input[type="date"]::-webkit-datetime-edit {
+  color: transparent;
+}
+
+.input-box input[type="date"]::before {
+  content: "Pick a Date";
+  position: absolute;
+  left: 60px;
+  top: 16px;
+  pointer-events: none;
+}
+
+/* When a date is selected, hide the fake placeholder */
+.input-box input[type="date"]:valid::before {
+  content: "Pick a Date";
+  color: #b27950;
+}

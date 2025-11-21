@@ -10,14 +10,10 @@ import "./nav-bar.css";
 import { getDownloadURL } from "firebase/storage";
 
 function Home({ user }) {
-
-
   function logOut() {
     auth.signOut();
     alert("Logged out successfully");
-
   }
-
 
   return (
     <>
@@ -52,18 +48,19 @@ function Home({ user }) {
             </li>
           </ul>
           <div className="sign-up-btn">
-            {!user &&
+            {!user && (
               <NavLink to="/SignUpPage">
                 <Button variant="contained">Sign Up</Button>
               </NavLink>
-            }
+            )}
 
-            {user &&
+            {user && (
               <NavLink to="/LoginPage">
-                <Button variant="contained" onClick={logOut} >Logout</Button>
+                <Button variant="contained" onClick={logOut}>
+                  Logout
+                </Button>
               </NavLink>
-            }
-
+            )}
           </div>
         </div>
       </div>

@@ -3,8 +3,7 @@
   padding: 80px;
   justify-content: space-evenly;
   background-color: #fffdf6;
-  min-height: 250vh;
-  height: auto;
+  min-height: 100vh;
   gap: 30px;
 }
 
@@ -114,7 +113,7 @@
   .about-us-container {
     padding: 40px;
     gap: 20px;
-    height: auto; 
+    height: auto;
     flex-wrap: wrap;
   }
 
@@ -245,5 +244,19 @@
 
   .values img {
     width: 35px;
+  }
+
+  .icons {
+    display: flex;
+
+    gap: 10px;
+  }
+
+  .icons h5 {
+    font-size: 20px;
+  }
+
+  .rating {
+    padding: 20px;
   }
 }

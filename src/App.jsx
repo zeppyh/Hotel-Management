@@ -12,14 +12,12 @@ import Admin from "./page/AdminPannel/Admin";
 import UserPanel from "./routes/private-routes/UserPanel";
 import Overview from "./components/AdminFeatures/Overview/Overview";
 import Booking from "./components/AdminFeatures/Bookings/Booking";
+import Process from "./page/Process/Process";
 
 function App() {
-
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
   const [hasData, setHasData] = useState(false);
-
-  
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -28,35 +26,35 @@ function App() {
         onValue(ref(db, `users/${user.uid}`), (snapshot) => {
           setHasData(snapshot.exists());
           setLoading(false);
-        })
+        });
       } else {
         setUser(null);
         setLoading(false);
       }
     });
   }, []);
-  if (loading) { return <></> }
+  if (loading) {
+    return <></>;
+  }
 
   return (
     <>
       <BrowserRouter>
         <Routes>
-
-        
           <Route element={<LandingPageRoute user={user} />}>
             <Route path="/" element={<LandingPage />} />
             <Route path="/*" element={<LandingPage />} />
+            <Route path="/Process" element={<Process />} />
           </Route>
+          <Route path="*" element={<LandingPage />} />
+
+          <Route path="/LoginPage" element={<LoginPage />} />
 
           <Route path="/SignUpPage" element={<SignUpPage />} />
           <Route path="/LoginPage" element={<LoginPage />} />
-
           {/* {user && (
             <Route path="/profile" element={<BOOKING />} />
           )} ACCESSIBLE LNG PAG NAKA LOGGED IN AND FOR BOOKING */}
-
-
-
 
           <Route element={<UserPanel />}>
             <Route path="/AdminPannel" element={<Admin />} />

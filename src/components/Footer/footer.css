@@ -64,7 +64,7 @@
 /* Contact Section */
 .contact-content {
   display: flex;
-  gap: 10px;
+  gap: 25px;
   flex-direction: column;
 }
 
@@ -76,6 +76,7 @@
 
 /* Content Header */
 .content-header {
+  padding-top: 20px;
   font-size: 20px;
 }
 
@@ -96,12 +97,9 @@
 /* Divider */
 .footer-divider {
   height: 1px;
-  background-color: #ffffff99;
-  width: 90%;
-  margin: 40px auto;
+  background-color: #ffffff80;
 }
 
-/* Bottom */
 .footer-bottom {
   display: flex;
   justify-content: space-between;
@@ -125,7 +123,6 @@
 .footer-bottom-links a:hover {
   text-decoration: underline;
 }
-
 
 /* ------------------------------- */
 /*        RESPONSIVENESS          */
