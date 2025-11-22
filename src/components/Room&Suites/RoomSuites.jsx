@@ -7,8 +7,10 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
 import { Users, Ruler, Eye } from "lucide-react";
+import { NavLink } from "react-router";
 
-function RoomSuites({ data }) {
+
+function RoomSuites({ data, user = null }) {
   return (
     <div className="room-suites-container">
       <div className="room-suites-header">
@@ -136,20 +138,25 @@ function RoomSuites({ data }) {
                 </Typography>
               </Box>
 
-              <Button
-                variant="contained"
-                sx={{
-                  backgroundColor: "#808D68",
-                  borderRadius: "20px",
-                  textTransform: "none",
-                  fontFamily: "Playfair Display",
-                  "&:hover": {
-                    backgroundColor: "#6a7b55",
-                  },
-                }}
+              <NavLink
+                to={user ? "/Process" : "/LoginPage"} 
+                style={{ textDecoration: 'none' }}
               >
-                Book
-              </Button>
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: "#808D68",
+                    borderRadius: "20px",
+                    textTransform: "none",
+                    fontFamily: "Playfair Display",
+                    "&:hover": {
+                      backgroundColor: "#6a7b55",
+                    },
+                  }}
+                >
+                  Book
+                </Button>
+              </NavLink>
             </CardActions>
           </Card>
         ))}

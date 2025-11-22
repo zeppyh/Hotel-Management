@@ -2,20 +2,24 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
+import { getStorage } from "firebase/storage"; 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDmCoGhhS4GFRd19Gu7PYB6OoYgQzj_WNU",
-  authDomain: "hotel-management-fb4a5.firebaseapp.com",
-  projectId: "hotel-management-fb4a5",
-  storageBucket: "hotel-management-fb4a5.firebasestorage.app",
-  messagingSenderId: "631196860476",
-  appId: "1:631196860476:web:8a59049b1099b69bbfc339",
-  measurementId: "G-6Z66RBV1CD",
+    apiKey: "AIzaSyCMPbYPG9R5Xs5nAYWNdr-AHvbtoBOi9Ck",
+    authDomain: "sa-diwa-project.firebaseapp.com",
+    databaseURL: "https://sa-diwa-project-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "sa-diwa-project",
+    storageBucket: "sa-diwa-project.firebasestorage.app",
+    messagingSenderId: "254649554760",
+    appId: "1:254649554760:web:4d2b92b6169fb2adf3057d",
+    measurementId: "G-6Z66RBV1CD",
 };
+
 
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const database = getDatabase(app);
+const storage = getStorage(app); 
 
-export { app, analytics, auth, database };
+export { app, analytics, auth, database, storage };

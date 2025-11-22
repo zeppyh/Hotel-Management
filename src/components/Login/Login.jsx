@@ -1,4 +1,4 @@
-import { NavLink } from "react-router"; // <-- No need for useNavigate
+import { NavLink } from "react-router"; 
 import { Button } from "@mui/material";
 import { ArrowLeft } from "lucide-react";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -6,6 +6,7 @@ import { auth, db } from "../../firebase-config";
 import { get, ref } from "firebase/database";
 import { useState } from "react";
 import "./log-in.css";
+import StorageImage from "../Shared/StorageImage";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -42,13 +43,13 @@ function Login() {
     <>
       <div className="login-page">
         <div className="login-bg-image">
-          <img src="./src/assets/login-bg.png" alt="Back Ground Image" />
+          <StorageImage path="images/login-bg.png" fallbackSrc="/src/assets/login-bg.png" alt="Back Ground Image" />
         </div>
 
         <div className="login-container">
           <div className="login-content-container">
             <div className="login-header">
-              <img src="/src/assets/icon.png" alt="Icon of Casa Diwa" />
+              <StorageImage path="images/icon.png" fallbackSrc="/src/assets/icon.png" alt="Icon of Casa Diwa" />
               <h1>Create Your </h1>
               <h1>Casa Diwa Account</h1>
             </div>

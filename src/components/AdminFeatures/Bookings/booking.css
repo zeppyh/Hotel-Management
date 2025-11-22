@@ -143,6 +143,54 @@
 .booking-table-content {
   height: 100%;
 }
+
+/* Styles for Status Summary Cards  */
+.status-summary-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.status-card {
+  flex: 1;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.status-card p {
+  font-size: 14px;
+  color: #8b7355;
+  margin-bottom: 5px;
+}
+
+.status-card h3 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Specific color adjustments */
+.status-card.confirmed h3 {
+  color: green;
+}
+
+.status-card.pending h3 {
+  color: #B46F46;
+}
+
+.status-card.cancelled h3 {
+  color: red;
+}
+
+.status-card.total h3 {
+  color: #4A5A47;
+}
+
 /* TABLET (1024px and below)       */
 @media (max-width: 1024px) {
   .booking-container {
@@ -165,6 +213,7 @@
     font-size: 18px;
   }
 }
+
 /* SMALL TABLETS (768px)           */
 @media (max-width: 768px) {
   .booking-container {
@@ -197,6 +246,7 @@
     margin-top: 40px;
   }
 }
+
 /* MOBILE (576px and below)        */
 @media (max-width: 576px) {
   .booking-container {
@@ -224,6 +274,7 @@
     font-size: 14px;
   }
 }
+
 /* EXTRA SMALL (360px and below)   */
 @media (max-width: 360px) {
   .search-bar input {

@@ -67,21 +67,19 @@
   margin-top: 10px;
 }
 
-.chart-content,
 .line-chart-content {
   background: #fff;
   border: 1px solid #e2d5c4;
   border-radius: 18px;
   padding: 25px;
-  height: 450px; /* SAME HEIGHT */
+  height: 450px;
 }
 
-/* RECENT BOOKINGS + STATUS GRID */
 .recent-bookings-container {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 25px;
-  margin-top: 30px;
+  margin-top: 20px;
   padding-right: 30px;
 }
 

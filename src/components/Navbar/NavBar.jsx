@@ -3,13 +3,34 @@ import { NavLink } from "react-router";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, onValue } from "firebase/database";
-import { auth, db } from "../../firebase-config";
+import { auth, db, storage } from "../../firebase-config"; // Ensure 'storage' is imported
 
 import Button from "@mui/material/Button";
 import "./nav-bar.css";
-import { getDownloadURL } from "firebase/storage";
+import { getDownloadURL, ref as storageRef } from "firebase/storage"; // Import storageRef
+
+// Define the storage path for the icon
+const ICON_IMAGE_PATH = "images/icon.png";
 
 function Home({ user }) {
+  // Use state to hold the dynamic icon URL
+  const [iconUrl, setIconUrl] = useState(''); 
+  
+  // Fetch the image URL from Firebase Storage on mount
+  useEffect(() => {
+    const fetchUrl = async () => {
+      try {
+        const imageReference = storageRef(storage, ICON_IMAGE_PATH);
+        const url = await getDownloadURL(imageReference);
+        setIconUrl(url);
+      } catch (error) {
+        console.error("Error fetching icon image URL:", error);
+        setIconUrl("");
+      }
+    };
+    fetchUrl();
+  }, []); 
+
   function logOut() {
     auth.signOut();
     alert("Logged out successfully");
@@ -19,8 +40,8 @@ function Home({ user }) {
     <>
       <div className="nav-bar-container">
         <div className="logo-container">
-          <img src="./src/assets/icon.png" alt="Icon of Casa Diwa" />
-          {/* EDIT FOR STORAGE*/}
+          {/* Use the dynamically fetched URL */}
+          <img src={iconUrl} alt="Icon of Casa Diwa" />
           <h1>Casa Diwa</h1>
         </div>
 
@@ -49,9 +70,9 @@ function Home({ user }) {
           </ul>
           <div className="sign-up-btn">
             {!user && (
-              <Link to="/SignUpPage">
+              <NavLink to="/SignUpPage">
                 <Button variant="contained">Sign Up</Button>
-              </Link>
+              </NavLink>
             )}
 
             {user && (
