@@ -1,4 +1,5 @@
 import "./book-process.css";
+import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
@@ -42,31 +43,88 @@ function BookProcess() {
                 </div>
               </div>
 
+              {/* Adults + Children Row */}
               <div className="row">
                 {/* Adults */}
-                <div className="form-group half">
-                  <label className="pax-header">Adults</label>
-                  <select>
-                    <option>Pax</option>
-                    <option>1 Adult</option>
-                    <option>2 Adult</option>
-                    <option>3 Adult</option>
-                    <option>4 Adult</option>
-                    <option>5 Adult</option>
-                  </select>
+                <div className="half">
+                  <label className="dropdown-label">Adults</label>
+                  <FormControl fullWidth>
+                    <Select
+                      defaultValue=""
+                      displayEmpty
+                      sx={{
+                        borderRadius: "25px",
+                        height: "50px",
+                        textAlign: "left",
+                        "& .MuiSelect-select": {
+                          textAlign: "left",
+                          display: "flex",
+                          alignItems: "center",
+                        },
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#d8a788",
+                          borderRadius: "25px",
+                        },
+                      }}
+                    >
+                      <MenuItem value="">
+                        <span
+                          style={{
+                            color: "#555",
+                          }}
+                        >
+                          Pax
+                        </span>
+                      </MenuItem>
+                      <MenuItem value={1}>1 Adult</MenuItem>
+                      <MenuItem value={2}>2 Adult</MenuItem>
+                      <MenuItem value={3}>3 Adult</MenuItem>
+                      <MenuItem value={4}>4 Adult</MenuItem>
+                      <MenuItem value={5}>5 Adult</MenuItem>
+                    </Select>
+                  </FormControl>
                 </div>
 
                 {/* Children */}
-                <div className="form-group half">
-                  <label>Children</label>
-                  <select>
-                    <option>Pax</option>
-                    <option>1 Children</option>
-                    <option>2 Children</option>
-                    <option>3 Children</option>
-                    <option>4 Children</option>
-                    <option>5 Children</option>
-                  </select>
+                <div className="half">
+                  <label className="dropdown-label">Children</label>
+                  <FormControl fullWidth>
+                    <Select
+                      defaultValue=""
+                      displayEmpty
+                      sx={{
+                        borderRadius: "25px",
+                        height: "50px",
+                        textAlign: "left",
+                        "& .MuiSelect-select": {
+                          textAlign: "left",
+                          display: "flex",
+                          alignItems: "center",
+                        },
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#d8a788",
+                          borderRadius: "25px",
+                        },
+                      }}
+                    >
+                      <MenuItem value="">
+                        <span
+                          style={{
+                            color: "#555",
+                            display: "flex",
+                            alignItems: "baseline",
+                          }}
+                        >
+                          Pax
+                        </span>
+                      </MenuItem>
+                      <MenuItem value={1}>1 Children</MenuItem>
+                      <MenuItem value={2}>2 Children</MenuItem>
+                      <MenuItem value={3}>3 Children</MenuItem>
+                      <MenuItem value={4}>4 Children</MenuItem>
+                      <MenuItem value={5}>5 Children</MenuItem>
+                    </Select>
+                  </FormControl>
                 </div>
               </div>
 
@@ -77,10 +135,11 @@ function BookProcess() {
 
       case 1:
         return (
-          <div className="step-content">
-            <h2>Select a Room</h2>
-            <p>Room options will appear here.</p>
-            {/* Insert your room selection UI here */}
+          <div className="room-selection-wrapper">
+            <div className="room-selection-content">
+              <h2>Select a Room</h2>
+              <p>Room options will appear here.</p>
+            </div>
           </div>
         );
 
@@ -89,7 +148,6 @@ function BookProcess() {
           <div className="step-content">
             <h2>Payment</h2>
             <p>Payment form goes here.</p>
-            {/* Insert payment component here */}
           </div>
         );
 
@@ -111,11 +169,9 @@ function BookProcess() {
           ))}
         </Stepper>
 
-        {/* Step Content Card */}
         <div className="book-step-card">
           {renderStepContent(activeStep)}
 
-          {/* Navigation Buttons */}
           <Stack
             direction="row"
             spacing={2}
@@ -129,6 +185,7 @@ function BookProcess() {
             >
               Back
             </Button>
+
             {!isLastStep ? (
               <Button variant="contained" onClick={handleNext}>
                 Next

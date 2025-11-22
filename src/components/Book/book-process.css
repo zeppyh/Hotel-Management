@@ -67,12 +67,22 @@
   opacity: 0.6;
 }
 
+.dropdown-label {
+  font-weight: 500;
+  font-size: 20px;
+  color: #6c7a51;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  display: block;
+  text-align: left;
+}
+
 select {
   width: 100%;
-  padding: 10px;
+  padding: 15px;
   font-size: 14px;
   text-align: baseline;
-  border-radius: 20px;
+  border-radius: 25px;
   border: 1px solid #c5a690;
   outline: none;
   color: #555;
@@ -114,7 +124,6 @@ select {
 }
 
 .MuiStepLabel-iconContainer {
-  border-radius: 100%;
   transform: scale(3);
 }
 
@@ -132,24 +141,6 @@ select {
   text-align: center;
 }
 
-.input-box {
-  position: relative;
-}
-
-.input-box input[type="date"]::-webkit-datetime-edit {
-  color: transparent;
-}
-
-.input-box input[type="date"]::before {
-  content: "Pick a Date";
-  position: absolute;
-  left: 60px;
-  top: 16px;
-  pointer-events: none;
-}
-
-/* When a date is selected, hide the fake placeholder */
-.input-box input[type="date"]:valid::before {
-  content: "Pick a Date";
-  color: #b27950;
+.MuiOutlinedInput-root {
+  background: transparent !important;
 }
