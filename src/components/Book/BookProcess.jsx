@@ -397,6 +397,27 @@ function BookProcess({ values = [], user }) {
                 </div>
               </div>
 
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor: "#6C7A51",
+                  color: "#fff",
+                  marginLeft: 3,
+                  padding: "10px 30px",
+                  borderRadius: "25px",
+                  textTransform: "none",
+                  fontSize: "16px",
+                  fontWeight: 500,
+                  boxShadow: "0px 3px 6px rgba(0,0,0,0.1)",
+                  width: "98%",
+                  "&:hover": {
+                    backgroundColor: "#404D28",
+                  },
+                  mt: 3,
+                }}
+              >
+                Check Availability
+              </Button>
 
             </div>
           </div>
@@ -460,7 +481,6 @@ function BookProcess({ values = [], user }) {
       case 2:
         return (
           <div className="payment-container">
-            {/* LEFT SIDE */}
             <div className="left-section">
               <div className="payment-content">
                 <div className="payment-header">
@@ -634,11 +654,12 @@ function BookProcess({ values = [], user }) {
               </div>
 
               <div className="summary-price">
+                <div className="divider"></div>
                 <div>
                   <span>Subtotal</span>
                   <span>₱{financials.subtotal}</span>
                 </div>
-                <hr />
+                <div className="divider"></div>
                 <div className="total">
                   <span>Total Amount</span>
                   <span>₱{financials.total}</span>

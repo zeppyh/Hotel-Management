@@ -1,10 +1,10 @@
 import { NavLink } from "react-router"; 
 import { Button } from "@mui/material";
 import { ArrowLeft } from "lucide-react";
-import { signInWithEmailAndPassword } from 'firebase/auth'
-import { auth, db } from '../../firebase-config';
-import { get, ref } from 'firebase/database';
-import { useState } from 'react';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "../../firebase-config";
+import { get, ref } from "firebase/database";
+import { useState } from "react";
 import "./log-in.css";
 
 function Login() {
@@ -17,23 +17,26 @@ function Login() {
         const user = userCredential.user;
         const userRef = ref(db, `users/${user.uid}`);
 
-        get(userRef).then((snapshot) => {
-          if (snapshot.exists() && snapshot.val().role === 'admin') {
-            window.location.href = "/AdminPannel/Overview";
-          } else {
+        get(userRef)
+          .then((snapshot) => {
+            if (snapshot.exists() && snapshot.val().role === "admin") {
+              window.location.href = "/AdminPannel/Overview";
+            } else {
+              window.location.href = "/";
+            }
+          })
+          .catch((dbError) => {
+            console.error("Error fetching user data:", dbError);
+            alert(
+              "Login successful, but couldn't get user role. Sending to home."
+            );
             window.location.href = "/";
-          }
-        }).catch((dbError) => {
-          console.error("Error fetching user data:", dbError);
-          alert("Login successful, but couldn't get user role. Sending to home.");
-          window.location.href = "/"; 
-        });
-
+          });
       })
       .catch((authError) => {
         alert(authError.message);
       });
-  };
+  }
 
   return (
     <>
@@ -57,7 +60,7 @@ function Login() {
                   onChange={(e) => setEmail(e.target.value)}
                   type="text"
                   placeholder="Enter your email"
-                  id="password" 
+                  id="password"
                 />
               </div>
 
@@ -83,7 +86,9 @@ function Login() {
             </div>
 
             <div className="login-btn">
-              <Button onClick={handleLogin} variant="contained">Login</Button>
+              <Button onClick={handleLogin} variant="contained">
+                Login
+              </Button>
             </div>
 
             <div className="login-divider">
