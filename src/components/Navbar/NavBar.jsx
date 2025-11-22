@@ -49,9 +49,9 @@ function Home({ user }) {
           </ul>
           <div className="sign-up-btn">
             {!user && (
-              <NavLink to="/SignUpPage">
+              <Link to="/SignUpPage">
                 <Button variant="contained">Sign Up</Button>
-              </NavLink>
+              </Link>
             )}
 
             {user && (

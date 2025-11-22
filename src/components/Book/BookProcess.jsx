@@ -151,13 +151,14 @@ function BookProcess({ values = [] }) {
                 sx={{
                   backgroundColor: "#6C7A51",
                   color: "#fff",
+                  marginLeft: 3,
                   padding: "10px 30px",
                   borderRadius: "25px",
                   textTransform: "none",
                   fontSize: "16px",
                   fontWeight: 500,
                   boxShadow: "0px 3px 6px rgba(0,0,0,0.1)",
-                  width: "99%",
+                  width: "98%",
                   "&:hover": {
                     backgroundColor: "#404D28",
                   },
@@ -217,9 +218,7 @@ function BookProcess({ values = [] }) {
       case 2:
         return (
           <div className="payment-container">
-            {/* LEFT SIDE */}
             <div className="left-section">
-              {/* --- Guest Information --- */}
               <div className="payment-content">
                 <div className="payment-header">
                   <h4>Guest Information</h4>
@@ -265,15 +264,19 @@ function BookProcess({ values = [] }) {
                     <h4>Payment Method</h4>
                   </div>
                   <div className="payment-method">
-                    <CreditCard strokeWidth={1.5} size={30} />
+                    <CreditCard strokeWidth={1.5} size={30} color="#824921" />
                     <span>Credit / Debit Card</span>
                   </div>
                   <div className="payment-method">
-                    <WalletMinimal strokeWidth={1.5} size={30} />
+                    <WalletMinimal
+                      strokeWidth={1.5}
+                      size={30}
+                      color="#824921"
+                    />
                     <span>E - Wallet</span>
                   </div>
                   <div className="payment-method">
-                    <Hotel strokeWidth={1.5} size={30} />
+                    <Hotel strokeWidth={1.5} size={30} color="#824921" />
                     <span>Pay at Hotel</span>
                   </div>
                 </div>
@@ -321,36 +324,38 @@ function BookProcess({ values = [] }) {
 
               <div className="summary-details">
                 <div>
-                  <span>Check-in</span>
-                  <span>Dec 14, 2025</span>
+                  <span className="orange">Check-in</span>
+                  <span className="green">Dec 14, 2025</span>
                 </div>
                 <div>
-                  <span>Check-out</span>
-                  <span>Dec 23, 2025</span>
+                  <span className="orange">Check-out</span>
+                  <span className="green">Dec 23, 2025</span>
                 </div>
                 <div>
-                  <span>Nights</span>
-                  <span>9</span>
+                  <span className="orange">Nights</span>
+                  <span className="green">9</span>
                 </div>
                 <div>
-                  <span>Guests</span>
-                  <span>2 Adult, 0 Children</span>
+                  <span className="orange">Guests</span>
+                  <span className="green">2 Adult, 0 Children</span>
                 </div>
               </div>
 
               <div className="summary-price">
+                <div className="divider"></div>
                 <div>
-                  <span>Subtotal</span>
-                  <span>₱76,500</span>
+                  <span className="orange">Subtotal</span>
+                  <span className="green">₱76,500</span>
                 </div>
+
                 <div>
-                  <span>Taxes & Fees 12%</span>
-                  <span>₱9,180</span>
+                  <span className="orange">Taxes & Fees 12%</span>
+                  <span className="green">₱9,180</span>
                 </div>
-                <hr />
+                <div className="divider"></div>
                 <div className="total">
-                  <span>Total Amount</span>
-                  <span>₱85,680</span>
+                  <span className="green">Total Amount</span>
+                  <span className="green">₱85,680</span>
                 </div>
               </div>
             </div>

@@ -80,7 +80,9 @@
   font-weight: 500;
   font-size: 20px;
   margin: 15px 0px 10px 0px;
-  display: block;
+  display: flex;
+  padding-left: 25px;
+  color: #5e6b47;
 }
 
 /* Wrapper */
@@ -233,6 +235,12 @@
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
 }
 
+.payment-method-header {
+  color: #5e6b47;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
 .payment-method {
   display: flex;
   align-items: center;
@@ -261,11 +269,30 @@
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
 }
 
+.booking-summary h4,
+h3 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.booking-summary h4,
+h3 {
+  font-weight: 400;
+  color: #5e6b47;
+}
+
 .summary-image {
   width: 100%;
   height: 150px;
   border-radius: 12px;
   object-fit: cover;
+}
+
+.summary-details {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .summary-details div,
@@ -277,13 +304,31 @@
 }
 
 .summary-price {
-  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .summary-price .total {
-  font-weight: bold;
   margin-top: 10px;
   font-size: 16px;
+}
+
+.orange {
+  color: #824921;
+}
+
+.green {
+  color: #5e6b47;
+}
+
+.input-information input::placeholder {
+  font-size: 20px;
+  transform: translateX(5px) translateY(1px);
+}
+
+.input-information input:focus::placeholder {
+  color: transparent;
 }
 
 /* ————————————————————————
