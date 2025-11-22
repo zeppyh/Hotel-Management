@@ -1,4 +1,4 @@
-import { NavLink } from "react-router"; // <-- No need for useNavigate
+import { NavLink } from "react-router"; 
 import { Button } from "@mui/material";
 import { ArrowLeft } from "lucide-react";
 import { signInWithEmailAndPassword } from 'firebase/auth'

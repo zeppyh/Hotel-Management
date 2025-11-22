@@ -1,15 +1,9 @@
 /* MAIN LAYOUT */
 .overview-container {
-<<<<<<< HEAD
   min-height: 100vh;
   height: auto;
   padding: 0px 50px 0px 20px;
   background-color: #f5efe7;
-=======
-  padding: 20px 40px;
-  background-color: #f4ece3;
-  height: auto;
->>>>>>> c035b11 (Add Book Process(Incomplete))
 }
 
 /* HEADER */

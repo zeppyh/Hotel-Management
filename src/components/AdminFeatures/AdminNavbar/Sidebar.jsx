@@ -45,7 +45,7 @@ function Sidebar({ children }) {
                 <span> Bookings </span>
               </NavLink>
             </div>
-
+            {/* 
             <div className="nav">
               <NavLink to="/AdminPannel/Room" className="links">
                 <DoorOpen strokeWidth={1.75} className="icons" />
@@ -58,7 +58,7 @@ function Sidebar({ children }) {
                 <Users strokeWidth={1.75} className="icons" />
                 <span> Guests</span>
               </NavLink>
-            </div>
+            </div> */}
           </div>
           <div className="log-out-btn">
             <div className="bottom-divider"></div>

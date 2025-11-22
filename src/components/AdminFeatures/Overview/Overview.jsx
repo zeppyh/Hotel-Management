@@ -9,47 +9,110 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 
+import { useState, useEffect } from 'react';
+import { db } from "../../../firebase-config";
+import { ref, onValue } from "firebase/database";
+
 function Overview() {
-  function createData(bookId, guestName, roomType, checkIn, status) {
-    return { bookId, guestName, roomType, checkIn, status };
+
+  const [bookings, setBookings] = useState([]);
+  const [loading, setLoading] = useState(true);
+  
+  const [dashboardData, setDashboardData] = useState({
+    totalBookings: 0,
+    totalRevenue: 0,
+    confirmed: 0,
+    pending: 0,
+    cancelled: 0,
+    monthlyBookings: [0, 0, 0, 0, 0, 0],
+  });
+
+
+  function createData(bookId, guestName, roomType, checkIn, status, amount) {
+    return { bookId, guestName, roomType, checkIn, status, amount };
   }
-  const rows = [
-    createData(
-      "CDW-A1B2C3",
-      "Maria Santos",
-      "Deluxe Suite",
-      "2025-12-03",
-      "Confirmed"
-    ),
-    createData(
-      "CDW-D4E5F6",
-      "Juan Dela Cruz",
-      "Executive Suite",
-      "2025-12-14",
-      "Confirmed"
-    ),
-    createData(
-      "CDW-G7H8I9",
-      "Sofia Reyes",
-      "Executive Suite",
-      "2025-12-26",
-      "Pending"
-    ),
-    createData(
-      "CDW-J1K2L3",
-      "Miguel Torres",
-      "Deluxe Suite",
-      "2025-01-02",
-      "Confirmed"
-    ),
-    createData(
-      "CDW-M4N5O6",
-      "Ana Garcia",
-      "Standard Room",
-      "2025-01-06",
-      "Cancelled"
-    ),
-  ];
+
+  useEffect(() => {
+    const reservationsRef = ref(db, 'reservations');
+
+    const unsubscribe = onValue(reservationsRef, (snapshot) => {
+      const data = snapshot.val();
+      const loadedBookings = [];
+      
+      let totalRevenue = 0;
+      let confirmedCount = 0;
+      let pendingCount = 0;
+      let cancelledCount = 0;
+      let monthlyCounts = [0, 0, 0, 0, 0, 0];
+
+      if (data) {
+        Object.keys(data).forEach(key => {
+          const booking = data[key];
+          
+          const amountValue = parseFloat(String(booking.amount).replace(/,/g, '')) || 0;
+          totalRevenue += amountValue;
+
+          
+          if (booking.status === "Confirmed") confirmedCount++;
+          if (booking.status === "Pending") pendingCount++;
+          if (booking.status === "Cancelled") cancelledCount++;
+          
+          
+          const checkInDate = new Date(booking.checkIn);
+          const month = checkInDate.getMonth();
+          const year = checkInDate.getFullYear();
+
+          if (year >= 2025 && month < 6) {
+              if (monthlyCounts[month] !== undefined) {
+                monthlyCounts[month]++;
+              }
+          }
+
+
+          loadedBookings.push(createData(
+            booking.reference, 
+            booking.guestName,
+            booking.roomType,
+            booking.checkIn,
+            booking.status,
+            booking.amount
+          ));
+        });
+      }
+
+      setBookings(loadedBookings.reverse());
+      setDashboardData({
+          totalBookings: loadedBookings.length,
+          totalRevenue: totalRevenue.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
+          confirmed: confirmedCount,
+          pending: pendingCount,
+          cancelled: cancelledCount,
+          monthlyBookings: monthlyCounts,
+      });
+      setLoading(false);
+    }, (error) => {
+      console.error("Failed to fetch bookings:", error);
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+
+  const displayedBookings = bookings.slice(0, 10);
+
+  
+  const StatusBadge = ({ status }) => {
+    const style = {
+      fontWeight: 500,
+      padding: '4px 8px',
+      borderRadius: '6px',
+      backgroundColor: status === "Confirmed" ? "#E6F4EA" : status === "Pending" ? "#FFF5E0" : status === "Cancelled" ? "#FFEDED" : "#F0F0F0",
+      color: status === "Confirmed" ? "green" : status === "Pending" ? "#B46F46" : status === "Cancelled" ? "red" : "#444",
+    };
+    return <span style={style}>{status}</span>;
+  };
+  
 
   return (
     <>
@@ -72,7 +135,7 @@ function Overview() {
               </div>
 
               <div className="value">
-                <p>156</p>
+                <p>{loading ? '...' : dashboardData.totalBookings}</p>
               </div>
               <div className="changes">
                 <p>+12% from last month</p>
@@ -90,7 +153,7 @@ function Overview() {
               </div>
 
               <div className="value">
-                <p>₱847,500</p>
+                <p>₱{loading ? '...' : dashboardData.totalRevenue}</p>
               </div>
               <div className="changes">
                 <p>+18% from last month</p>
@@ -108,7 +171,7 @@ function Overview() {
               </div>
 
               <div className="value">
-                <p>89</p>
+                <p>{loading ? '...' : dashboardData.totalBookings * 1.5}</p> 
               </div>
               <div className="changes">
                 <p>+8% increase</p>
@@ -149,10 +212,9 @@ function Overview() {
                   barGapRatio: 0.1,
                 },
               ]}
-              series={[{ data: [50, 45, 70, 60, 70, 90], color: "#404D3C" }]}
+              series={[{ data: dashboardData.monthlyBookings, color: "#404D3C" }]} 
               width={500}
               height={420}
-              // Design
               sx={{
                 "& .MuiBarElement-root": {
                   rx: 8,
@@ -161,7 +223,7 @@ function Overview() {
               yAxis={[{ min: 0, max: 80 }]}
               margin={{ top: 20, bottom: 40, left: 40, right: 10 }}
               slotProps={{
-                legend: { hidden: true }, // hide legend as in the sample
+                legend: { hidden: true },
               }}
             />
           </div>
@@ -182,6 +244,7 @@ function Overview() {
                   ]}
                   series={[
                     {
+                      
                       data: [255000, 280000, 260000, 345000, 300000, 320000],
                       color: "#B46F46",
                       curve: "smooth",
@@ -200,15 +263,12 @@ function Overview() {
                   margin={{ top: 20, bottom: 40, left: 60, right: 20 }}
                   grid={{ vertical: true, horizontal: true }}
                   sx={{
-                    // Gridline color
                     "& .MuiChartsGrid-root line": {
-                      stroke: "#EAD9C8", // soft light brown gridlines
+                      stroke: "#EAD9C8",
                     },
-                    // Line styling (optional enhancement)
                     "& .MuiLineElement-root": {
                       strokeWidth: 3,
                     },
-                    // Dot styling
                     "& .MuiMarkElement-root": {
                       stroke: "#B46F46",
                       strokeWidth: 3,
@@ -216,7 +276,7 @@ function Overview() {
                     },
                   }}
                   slotProps={{
-                    legend: { hidden: true }, // hide legend as in the sample
+                    legend: { hidden: true },
                   }}
                 />
               </div>
@@ -280,144 +340,45 @@ function Overview() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {rows.map((row) => (
-                      <TableRow
-                        key={row.bookId}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell
-                          sx={{ color: "#4A5A47" }}
-                          component="th"
-                          scope="row"
-                        >
-                          {row.bookId}
+                    {loading ? (
+                      <TableRow>
+                        <TableCell colSpan={5} align="center">
+                          Loading recent bookings...
                         </TableCell>
-                        <TableCell sx={{ color: "#4A5A47" }} align="center">
-                          {row.guestName}
-                        </TableCell>
-                        <TableCell sx={{ color: "#8B7355" }} align="center">
-                          {row.roomType}
-                        </TableCell>
-                        <TableCell sx={{ color: "#8B7355" }} align="center">
-                          {row.checkIn}
-                        </TableCell>
-                        <TableCell align="center">{row.status}</TableCell>
                       </TableRow>
-                    ))}
+                    ) : displayedBookings.length === 0 ? (
+                      <TableRow>
+                        <TableCell colSpan={5} align="center">
+                          No recent reservations found.
+                        </TableCell>
+                      </TableRow>
+                    ) : (
+                      displayedBookings.map((row) => (
+                        <TableRow
+                          key={row.bookId}
+                          sx={{
+                            "&:last-child td, &:last-child th": { border: 0 },
+                          }}
+                        >
+                          <TableCell sx={{ color: "#4A5A47" }} component="th" scope="row">
+                            {row.bookId}
+                          </TableCell>
+                          <TableCell sx={{ color: "#4A5A47" }} align="center">
+                            {row.guestName}
+                          </TableCell>
+                          <TableCell sx={{ color: "#8B7355" }} align="center">
+                            {row.roomType}
+                          </TableCell>
+                          <TableCell sx={{ color: "#8B7355" }} align="center">
+                            {row.checkIn}
+                          </TableCell>
+                          <TableCell align="center"><StatusBadge status={row.status} /></TableCell>
+                        </TableRow>
+                      ))
+                    )}
                   </TableBody>
                 </Table>
               </TableContainer>
-            </div>
-          </div>
-
-          <div className="booking-status-container">
-            <div className="booking-status-content">
-              <div className="booking-status-header">
-                <p>Booking Status</p>
-              </div>
-              <div>
-                <PieChart
-                  width={250}
-                  height={240}
-                  series={[
-                    {
-                      data: [
-                        {
-                          id: 0,
-                          value: 89,
-                          label: "Confirmed: 89",
-                          color: "#404D3C",
-                        },
-                        {
-                          id: 1,
-                          value: 34,
-                          label: "Pending: 34",
-                          color: "#B46F46",
-                        },
-                        {
-                          id: 2,
-                          value: 12,
-                          label: "Cancelled: 12",
-                          color: "#C46A4A",
-                        },
-                      ],
-
-                      outerRadius: 100,
-
-                      labelPosition: "outside",
-
-                      labelStyle: {
-                        fill: "#8B7355",
-                        fontFamily: "Inter",
-                        fontSize: 14,
-                        fontWeight: 500,
-                      },
-
-                      stroke: "#ffffff",
-                      strokeWidth: 1,
-                    },
-                  ]}
-                  sx={{
-                    "& .MuiPieArc-root": {
-                      stroke: "#ffffff",
-                      strokeWidth: 1,
-                    },
-                  }}
-                />
-              </div>
-              <div className="status">
-                <div className="status-content">
-                  <div className="dot">
-                    <Box
-                      sx={{
-                        width: 12,
-                        height: 12,
-                        borderRadius: "50%",
-                        backgroundColor: "#B46F46",
-                      }}
-                    />
-                    <p>Pending</p>
-                  </div>
-                  <div className="content">
-                    <p>34</p>
-                  </div>
-                </div>
-                <div className="status-content">
-                  <div className="dot">
-                    <Box
-                      sx={{
-                        width: 12,
-                        height: 12,
-                        borderRadius: "50%",
-                        backgroundColor: "#4A5A47",
-                      }}
-                    />
-
-                    <p>Confirmed</p>
-                  </div>
-                  <div className="content">
-                    <p>89</p>
-                  </div>
-                </div>
-                <div className="status-content">
-                  <div className="dot">
-                    <Box
-                      sx={{
-                        width: 12,
-                        height: 12,
-                        borderRadius: "50%",
-                        backgroundColor: "#B85C38",
-                      }}
-                    />
-                    <p>Cancelled</p>
-                  </div>
-                  <div className="content">
-                    <p>12</p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
