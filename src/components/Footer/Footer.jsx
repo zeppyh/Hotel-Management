@@ -1,5 +1,6 @@
 import { Link } from "react-scroll";
 import "./footer.css";
+import StorageImage from "../Shared/StorageImage";
 import { Facebook, Instagram, Mail } from "lucide-react";
 
 function Footer() {
@@ -8,8 +9,8 @@ function Footer() {
       <div className="footer-container">
         <div className="footer-content">
           <div className="footer-header">
-            <img src="./src/assets/icon.png" alt="Icon of Casa Diwa" />
-            {/* EDIT FOR STORAGE */}
+            {/* load icon from Firebase Storage with local fallback */}
+            <StorageImage path="images/icon.png" fallbackSrc="/src/assets/icon.png" alt="Icon of Casa Diwa" />
             <h1>Casa Diwa</h1>
           </div>
           <div className="footer-logo-container">

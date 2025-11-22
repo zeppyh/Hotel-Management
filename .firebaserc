@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "sa-diwa-project"
-  }
+    "default": "sa-diwa-project",
+    "casa-diwa": "sa-diwa-project"
+  },
+  "targets": {},
+  "etags": {}
 }

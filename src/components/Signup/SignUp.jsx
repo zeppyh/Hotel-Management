@@ -9,6 +9,7 @@ import { db } from "../../firebase-config";
 import { onAuthStateChanged } from "firebase/auth";
 
 import "./sign-up.css";
+import StorageImage from "../Shared/StorageImage";
 
 // REGEX CONSTANTS
 //(10 or 11 digits, starting with 09 or +639 or just 9)
@@ -100,16 +101,13 @@ function SignUp() {
     <>
       <div className="signup-page">
         <div className="signup-bg-image">
-          <img
-            src="./src/assets/signup-bg.png"
-            alt="SignUp back round picture"
-          />
+          <StorageImage path="images/signup-bg.png" fallbackSrc="/src/assets/signup-bg.png" alt="SignUp background" />
         </div>
 
         <div className="signup-container">
           <div className="signup-content-container">
             <div className="signup-header">
-              <img src="/src/assets/icon.png" alt="Icon of Casa Diwa" />
+              <StorageImage path="images/icon.png" fallbackSrc="/src/assets/icon.png" alt="Icon of Casa Diwa" />
               <h1>Create Your </h1>
               <h1>Casa Diwa Account</h1>
             </div>
