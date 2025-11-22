@@ -2,10 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
   padding: 50px 20px;
   min-height: 100vh;
-  background-color: #fdf6eb; /* light beige background */
 }
 
 .book-step-card {
@@ -36,20 +34,19 @@
 .form-group label {
   display: block;
   text-align: left;
-  margin-top: 25px;
-  margin-bottom: 10px;
+  margin: 20px 0px 10px 25px;
   color: #6c7a51;
   font-weight: 500;
   font-size: 20px;
 }
 
-/* Date Field Box */
 .input-box {
   display: flex;
   align-items: center;
   border: 1px solid #d8a788;
   border-radius: 25px;
   height: 50px;
+  margin-left: 20px;
 }
 
 .input-box input {
@@ -105,18 +102,19 @@ select {
   font-weight: 500;
   font-size: 20px;
   color: #b27950;
+  margin-left: 25px;
 }
 
 /* Button */
 .check-btn {
-  width: 100%;
+  width: 98%;
   background: #6e7f50;
   color: white;
   border: none;
   padding: 13px 0;
   font-size: 15px;
   border-radius: 30px;
-  margin-top: 25px;
+  margin: 25px 0px 0px 20px;
   cursor: pointer;
 }
 .check-btn:hover {
@@ -142,5 +140,72 @@ select {
 }
 
 .MuiOutlinedInput-root {
-  background: transparent !important;
+  background: transparent;
+}
+
+.rooms-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 20px;
+}
+
+.room-card {
+  display: flex;
+  gap: 25px;
+  background: white;
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  border: 2px solid transparent;
+  transition: 0.3s ease;
+}
+
+.selected-room {
+  border-color: #6e7f50;
+  background: #f7f4ec;
+}
+
+.room-image {
+  width: 320px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.room-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.room-info h2 {
+  font-size: 26px;
+  color: #6c7a51;
+  margin-bottom: 12px;
+}
+
+.room-desc {
+  color: #444;
+  font-size: 15px;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.room-price {
+  color: #6e7f50;
+  font-size: 22px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.amenities-list {
+  margin-top: 12px;
+  padding-left: 20px;
+}
+
+.amenities-list li {
+  margin-bottom: 4px;
+  font-size: 14px;
+  color: #555;
 }
