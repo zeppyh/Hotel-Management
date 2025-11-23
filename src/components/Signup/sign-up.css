@@ -169,6 +169,15 @@
   top: 2px;
 }
 
+.signup-form-group input:focus::placeholder {
+  color: transparent;
+}
+
+.signup-form-group input::placeholder {
+  font-size: 15px;
+  transform: translateX(5px) translateY(1px);
+}
+
 /* Phones */
 @media (max-width: 600px) {
   .login-container {
