@@ -65,7 +65,6 @@ const selectStyles = {
 };
 
 function BookProcess({ values = [], user }) {
-
   useEffect(() => {
     if (user && user.phoneNumber) {
       setGuestContact(user.phoneNumber);
@@ -83,7 +82,6 @@ function BookProcess({ values = [], user }) {
   const [adultCount, setAdultCount] = useState("");
   const [childCount, setChildCount] = useState("");
   const [extraChargeMessage, setExtraChargeMessage] = useState("");
-
 
   const [guestContact, setGuestContact] = useState("");
   const [guestRequest, setGuestRequest] = useState("");
@@ -159,8 +157,8 @@ function BookProcess({ values = [], user }) {
       amount: bookingDetails.financials.total,
       checkIn: bookingDetails.checkInDate,
       checkOut: bookingDetails.checkOutDate,
-      guestEmail: user?.email || 'N/A',
-      guestName: user?.fullName || user?.displayName || 'N/A',
+      guestEmail: user?.email || "N/A",
+      guestName: user?.fullName || user?.displayName || "N/A",
       roomType: bookingDetails.selectedRoom.roomName,
       status: "Pending",
 
@@ -169,7 +167,7 @@ function BookProcess({ values = [], user }) {
       userId: user.uid,
       contactNumber: bookingDetails.guestContact,
       paymentMethod: bookingDetails.paymentMethod,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
 
     await set(bookingRef, dataToSave);
@@ -180,7 +178,7 @@ function BookProcess({ values = [], user }) {
 
     const nights = getNights();
     // Parse price
-    const priceString = String(selectedRoom.price).replace(/,/g, '');
+    const priceString = String(selectedRoom.price).replace(/,/g, "");
     const pricePerNight = parseFloat(priceString) || 0;
 
     let roomCost = pricePerNight * nights;
@@ -199,8 +197,11 @@ function BookProcess({ values = [], user }) {
 
     return {
       subtotal: subtotal.toLocaleString(),
-      total: total.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
-      extra: extraCharge
+      total: total.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }),
+      extra: extraCharge,
     };
   };
 
@@ -247,25 +248,27 @@ function BookProcess({ values = [], user }) {
   const handleBack = () => setActiveStep((prev) => prev - 1);
 
   const handleFinish = async () => {
-    const loggedInEmail = user?.email || '';
+    const loggedInEmail = user?.email || "";
 
     if (!selectedRoom) return alert("Error: No room selected.");
 
     // 1. Validation (Requires Email, Contact state, and Payment state)
     if (!loggedInEmail || !guestContact || !paymentMethod) {
-      return alert("Please ensure your Email, Contact Number, and Payment Method are selected.");
+      return alert(
+        "Please ensure your Email, Contact Number, and Payment Method are selected."
+      );
     }
     if (!/^\+?[0-9\s-]{10,}$/.test(guestContact)) {
       return alert("Please enter a valid contact number.");
     }
 
-    if (paymentMethod === 'Card') {
+    if (paymentMethod === "Card") {
       if (!cardNumber || !expiryDate || !cvv || !cardholderName) {
         return alert("Please complete all required card payment details.");
       }
     }
 
-    //Data Collection for Database Save 
+    //Data Collection for Database Save
     const bookingDetails = {
       selectedRoom,
       checkInDate,
@@ -280,15 +283,16 @@ function BookProcess({ values = [], user }) {
       expiryDate,
       cvv,
       cardholderName,
-      financials: financials
+      financials: financials,
     };
 
     try {
       await saveBookingData(user, bookingDetails);
 
-      alert(`Booking confirmed for ${selectedRoom.roomName}! Total paid: ₱${financials.total}. Confirmation will be sent to ${loggedInEmail}.`);
+      alert(
+        `Booking confirmed for ${selectedRoom.roomName}! Total paid: ₱${financials.total}. Confirmation will be sent to ${loggedInEmail}.`
+      );
       window.location.href = "/";
-
     } catch (error) {
       console.error("Database Save Error:", error);
       alert(`Booking Failed: ${error.message}`);
@@ -296,9 +300,10 @@ function BookProcess({ values = [], user }) {
   };
 
   const renderStepContent = (step) => {
-    const loggedInName = user?.fullName || user?.displayName || 'User Name Not Found';
-    const loggedInEmail = user?.email || 'N/A';
-    const initialContact = user?.phoneNumber || ''; // Get initial contact number
+    const loggedInName =
+      user?.fullName || user?.displayName || "User Name Not Found";
+    const loggedInEmail = user?.email || "N/A";
+    const initialContact = user?.phoneNumber || ""; // Get initial contact number
     switch (step) {
       case 0:
         return (
@@ -385,12 +390,14 @@ function BookProcess({ values = [], user }) {
                     </Select>
                   </FormControl>
                   {extraChargeMessage && (
-                    <p style={{
-                      color: "#b91c1c",
-                      fontSize: "13px",
-                      marginTop: "10px",
-                      textAlign: "left"
-                    }}>
+                    <p
+                      style={{
+                        color: "#b91c1c",
+                        fontSize: "13px",
+                        marginTop: "10px",
+                        textAlign: "left",
+                      }}
+                    >
                       {extraChargeMessage}
                     </p>
                   )}
@@ -418,7 +425,6 @@ function BookProcess({ values = [], user }) {
               >
                 Check Availability
               </Button>
-
             </div>
           </div>
         );
@@ -427,12 +433,14 @@ function BookProcess({ values = [], user }) {
         return (
           <>
             {!selectedRoom && (
-              <p style={{
-                color: '#b91c1c',
-                fontWeight: 'bold',
-                textAlign: 'center',
-                marginBottom: '20px'
-              }}>
+              <p
+                style={{
+                  color: "#b91c1c",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  marginBottom: "20px",
+                }}
+              >
                 Please select a room before clicking Next.
               </p>
             )}
@@ -440,8 +448,9 @@ function BookProcess({ values = [], user }) {
               {values.map((room) => (
                 <div
                   key={room.id}
-                  className={`room-card ${selectedRoom?.id === room.id ? "selected-room" : ""
-                    }`}
+                  className={`room-card ${
+                    selectedRoom?.id === room.id ? "selected-room" : ""
+                  }`}
                 >
                   <img src={room.image} className="room-image" />
 
@@ -449,7 +458,9 @@ function BookProcess({ values = [], user }) {
                     <h2>{room.roomName}</h2>
                     <p className="room-desc">{room.roomDescription}</p>
 
-                    <h3 className="room-price">₱ {room.price.toLocaleString()}</h3>
+                    <h3 className="room-price">
+                      ₱ {room.price.toLocaleString()}
+                    </h3>
 
                     {/* Amenities */}
                     <ul className="amenities-list">
@@ -494,7 +505,7 @@ function BookProcess({ values = [], user }) {
                     className="information"
                     value={loggedInName}
                     readOnly
-                    style={{ backgroundColor: '#f7f4ec' }}
+                    style={{ backgroundColor: "#f7f4ec" }}
                   />
                 </div>
                 <div className="input-information">
@@ -504,7 +515,7 @@ function BookProcess({ values = [], user }) {
                     className="information"
                     value={loggedInEmail}
                     readOnly
-                    style={{ backgroundColor: '#f7f4ec' }}
+                    style={{ backgroundColor: "#f7f4ec" }}
                   />
                 </div>
                 <div className="input-information">
@@ -515,8 +526,7 @@ function BookProcess({ values = [], user }) {
                     placeholder={guestContact}
                     value={guestContact}
                     readOnly
-                    style={{ backgroundColor: '#f7f4ec' }}
-
+                    style={{ backgroundColor: "#f7f4ec" }}
                     onChange={(e) => setGuestContact(e.target.value)}
                   />
                 </div>
@@ -541,22 +551,28 @@ function BookProcess({ values = [], user }) {
 
                   {/* Payment Options (Clickable) */}
                   <div
-                    className={`payment-method ${paymentMethod === 'Card' ? 'selected-payment' : ''}`}
-                    onClick={() => setPaymentMethod('Card')}
+                    className={`payment-method ${
+                      paymentMethod === "Card" ? "selected-payment" : ""
+                    }`}
+                    onClick={() => setPaymentMethod("Card")}
                   >
                     <CreditCard strokeWidth={1.5} size={30} />
                     <span>Credit / Debit Card</span>
                   </div>
                   <div
-                    className={`payment-method ${paymentMethod === 'E-Wallet' ? 'selected-payment' : ''}`}
-                    onClick={() => setPaymentMethod('E-Wallet')}
+                    className={`payment-method ${
+                      paymentMethod === "E-Wallet" ? "selected-payment" : ""
+                    }`}
+                    onClick={() => setPaymentMethod("E-Wallet")}
                   >
                     <WalletMinimal strokeWidth={1.5} size={30} />
                     <span>E - Wallet</span>
                   </div>
                   <div
-                    className={`payment-method ${paymentMethod === 'Hotel' ? 'selected-payment' : ''}`}
-                    onClick={() => setPaymentMethod('Hotel')}
+                    className={`payment-method ${
+                      paymentMethod === "Hotel" ? "selected-payment" : ""
+                    }`}
+                    onClick={() => setPaymentMethod("Hotel")}
                   >
                     <Hotel strokeWidth={1.5} size={30} />
                     <span>Pay at Hotel</span>
@@ -564,7 +580,7 @@ function BookProcess({ values = [], user }) {
                 </div>
 
                 {/* Conditional Card Details Input */}
-                {paymentMethod === 'Card' && (
+                {paymentMethod === "Card" && (
                   <>
                     <div className="divider"></div>
                     <div className="input-information">
@@ -611,7 +627,6 @@ function BookProcess({ values = [], user }) {
                     </div>
                   </>
                 )}
-
               </div>
             </div>
 
@@ -626,13 +641,25 @@ function BookProcess({ values = [], user }) {
                 <div>
                   <span>Check-in</span>
                   <span>
-                    {checkInDate ? new Date(checkInDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Not selected'}
+                    {checkInDate
+                      ? new Date(checkInDate).toLocaleDateString("en-US", {
+                          month: "short",
+                          day: "numeric",
+                          year: "numeric",
+                        })
+                      : "Not selected"}
                   </span>
                 </div>
                 <div>
                   <span>Check-out</span>
                   <span>
-                    {checkOutDate ? new Date(checkOutDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Not selected'}
+                    {checkOutDate
+                      ? new Date(checkOutDate).toLocaleDateString("en-US", {
+                          month: "short",
+                          day: "numeric",
+                          year: "numeric",
+                        })
+                      : "Not selected"}
                   </span>
                 </div>
                 <div>

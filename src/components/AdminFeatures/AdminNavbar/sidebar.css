@@ -6,129 +6,6 @@
 
 .sidebar-content {
   width: 340px;
-}
-
-.sidebar-header img {
-  position: relative;
-  top: -5px;
-  width: 60px;
-  height: 60px;
-}
-
-.sidebar-header {
-  display: flex;
-  flex-direction: column;
-  border-bottom: 1px solid #e4d5c7;
-}
-
-.header {
-  display: flex;
-  padding: 20px 0px 0px 20px;
-  gap: 5px;
-  margin-bottom: -10px;
-}
-
-.header h1 {
-  color: #4a5a47;
-  font-family: Inter;
-  font-weight: 500;
-  font-size: 24px;
-}
-
-.sidebar-header p {
-  position: relative;
-  top: -28px;
-  left: 87px;
-  color: #8b7355;
-  font-size: 14px;
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  padding: 15px 20px 15px 20px;
-}
-
-.links {
-  font-size: 18px;
-  color: #4a5a47;
-}
-
-.nav .links {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  width: 90%;
-  border-radius: 20px;
-  padding: 10px 20px 10px 20px;
-}
-
-.nav .links:hover {
-  color: #ffffff;
-  background: #4a5a47;
-}
-
-.nav .links.active {
-  color: #ffffff;
-  background: #4a5a47;
-}
-
-.log-out-btn {
-  display: flex;
-}
-
-.bottom-divider {
-  height: 1px;
-  margin: 20px;
-  background: #000000;
-}
-
-.log-out-btn {
-  display: flex;
-  flex-direction: column;
-}
-
-.bottom-divider {
-  margin-top: 500px;
-}
-
-.logout-btn {
-  display: flex;
-  align-items: center;
-  padding: 20px 0px 0px 50px;
-  gap: 10px;
-}
-
-.logout-btn {
-  color: #be813c;
-}
-
-.icons {
-  width: 18px;
-  height: 18px;
-}
-
-.main-content {
-  /* This is the key: tells the element to consume all leftover space */
-  flex-grow: 1;
-
-  /* Set the background color for the content area to match the image */
-  background-color: #f5efe7;
-
-  /* Optional: Ensures content can scroll if it overflows vertically */
-  overflow-y: auto;
-}
-
-
-/*   DESKTOP DEFAULT STYLE   */
-.sidebar-container {
-  display: flex;
-  background-color: #ffffff;
-  height: 100vh;
-}
-
-.sidebar-content {
-  width: 340px;
   background-color: #ffffff;
   border-right: 1px solid #e4d5c7;
 }
@@ -143,12 +20,15 @@
 .sidebar-header img {
   width: 60px;
   height: 60px;
+  position: relative;
+  top: -5px;
 }
 
 .header {
   display: flex;
   gap: 5px;
   margin-top: 10px;
+  padding: 20px 0px 0px 20px;
 }
 
 .header h1 {
@@ -162,6 +42,9 @@
   margin-top: -5px;
   color: #8b7355;
   font-size: 14px;
+  position: relative;
+  top: -28px;
+  left: 87px;
 }
 
 .nav {
@@ -170,15 +53,18 @@
   padding: 15px 20px;
 }
 
+.links {
+  font-size: 18px;
+  color: #4a5a47;
+}
+
 .nav .links {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 18px;
   width: 100%;
   padding: 12px 20px;
   border-radius: 12px;
-  color: #4a5a47;
 }
 
 .nav .links:hover {
@@ -191,7 +77,13 @@
   color: #ffffff;
 }
 
-/* Logout Area */
+.log-out-btn {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 500px;
+}
+
 .bottom-divider {
   height: 1px;
   background: #00000033;
@@ -203,6 +95,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-left: 25px;
   padding: 15px 20px;
   color: #be813c;
   cursor: pointer;
@@ -213,14 +106,13 @@
   height: 18px;
 }
 
-/* Main content grows to fill extra space */
 .main-content {
   flex-grow: 1;
   background-color: #f5efe7;
   overflow-y: auto;
 }
+
 /*                  TABLETS                   */
-/*        (Sidebar shrinks a little)          */
 @media (max-width: 1024px) {
   .sidebar-content {
     width: 280px;
@@ -240,15 +132,8 @@
   }
 }
 
-
-
-
 /*                MOBILE VIEW                 */
-/*    Sidebar becomes a overlay drawer        */
-
 @media (max-width: 768px) {
-
-  /* Sidebar slides in/out */
   .sidebar-content {
     position: fixed;
     left: -100%;
@@ -258,20 +143,17 @@
     background: #ffffff;
     transition: all 0.3s ease-in-out;
     z-index: 2000;
-    box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
   }
 
-  /* When sidebar is open (add a class via React state) */
   .sidebar-content.open {
     left: 0;
   }
 
-  /* Main content full width */
   .main-content {
     width: 100%;
   }
 
-  /* Text resizing */
   .header h1 {
     font-size: 18px;
   }
@@ -280,13 +162,8 @@
     font-size: 16px;
     padding: 10px;
   }
-
-  .bottom-divider {
-    margin-top: 20px;
-  }
-
-  /* Add mobile hamburger from your React component */
 }
+
 /*          EXTRA SMALL PHONES (360px)        */
 @media (max-width: 360px) {
   .sidebar-content {
