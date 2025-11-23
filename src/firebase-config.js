@@ -9,7 +9,7 @@ const firebaseConfig = {
   authDomain: "sa-diwa-project.firebaseapp.com",
   databaseURL: "https://sa-diwa-project-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "sa-diwa-project",
-  storageBucket: "sa-diwa-project.firebasestorage.app",
+    storageBucket: "sa-diwa-project.firebasestorage.app",
   messagingSenderId: "254649554760",
   appId: "1:254649554760:web:4d2b92b6169fb2adf3057d"
 };
