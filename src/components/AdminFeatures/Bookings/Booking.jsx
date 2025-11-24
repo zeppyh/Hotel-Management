@@ -1,12 +1,6 @@
 import "./booking.css";
 import React, { useState, useEffect } from "react";
-import {
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
-  Button as MuiButton,
-} from "@mui/material";
+import { Select, MenuItem, FormControl, InputLabel, Button as MuiButton } from "@mui/material"; 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import SearchIcon from "@mui/icons-material/Search";
@@ -16,14 +10,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import {
-  Eye,
-  Trash2,
-  Pencil,
-  X,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { Eye, Trash2, Pencil, X, ChevronLeft, ChevronRight } from "lucide-react"; 
 
 import { db } from "../../../firebase-config";
 import { ref, onValue, remove, set, update } from "firebase/database";
@@ -32,12 +19,13 @@ const STATUS_CYCLE = ["Pending", "Confirmed", "Cancelled"];
 const FILTER_STATUSES = ["All Status", "Confirmed", "Pending", "Cancelled"];
 const ROOM_TYPES = ["Standard Rooms", "Deluxe Suite", "Executive Suite"];
 const ROOM_PRICES = {
-  "Standard Rooms": 3500.0,
-  "Deluxe Suite": 5800.0,
-  "Executive Suite": 8900.0,
+    "Standard Rooms": 3500.00,
+    "Deluxe Suite": 5800.00,
+    "Executive Suite": 8900.00
 };
 const getTodayDate = () => new Date().toISOString().split("T")[0];
 const ITEMS_PER_PAGE = 15;
+
 
 function Booking() {
   const [status, setStatus] = React.useState("All Status");
@@ -45,20 +33,17 @@ function Booking() {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [statusCounts, setStatusCounts] = useState({
-    total: 0,
-    confirmed: 0,
-    pending: 0,
-    cancelled: 0,
+    total: 0, confirmed: 0, pending: 0, cancelled: 0
   });
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBookingDetails, setSelectedBookingDetails] = useState(null);
-
+  
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editedBookingData, setEditedBookingData] = useState(null);
 
   const [currentPage, setCurrentPage] = useState(1);
-
+  
   const calculateNights = (checkIn, checkOut) => {
     if (!checkIn || !checkOut) return 0;
     const start = new Date(checkIn);
@@ -72,97 +57,72 @@ function Booking() {
     return ROOM_PRICES[roomType] || 0;
   };
 
-  function createData(
-    bookId,
-    guestName,
-    guestEmail,
-    roomType,
-    checkIn,
-    checkOut,
-    amount,
-    status,
-    contactNumber,
-    guestRequest,
-    paymentMethod
-  ) {
-    return {
-      bookId,
-      guestName,
-      guestEmail,
-      roomType,
-      checkIn,
-      checkOut,
-      amount,
-      status,
-      contactNumber,
-      guestRequest,
-      paymentMethod,
-    };
+  function createData(bookId, guestName, guestEmail, roomType, checkIn, checkOut, amount, status, contactNumber, guestRequest, paymentMethod) {
+    return { bookId, guestName, guestEmail, roomType, checkIn, checkOut, amount, status, contactNumber, guestRequest, paymentMethod };
   }
 
   useEffect(() => {
-    const reservationsRef = ref(db, "reservations");
+    const reservationsRef = ref(db, 'reservations');
 
-    const unsubscribe = onValue(
-      reservationsRef,
-      (snapshot) => {
-        const data = snapshot.val();
-        const loadedBookings = [];
+    const unsubscribe = onValue(reservationsRef, (snapshot) => {
+      const data = snapshot.val();
+      const loadedBookings = [];
+      
+      let counts = { total: 0, confirmed: 0, pending: 0, cancelled: 0 };
 
-        let counts = { total: 0, confirmed: 0, pending: 0, cancelled: 0 };
-
-        if (data) {
-          Object.keys(data).forEach((key) => {
-            const booking = data[key];
-            loadedBookings.push(
-              createData(
-                booking.reference,
-                booking.guestName,
-                booking.guestEmail,
-                booking.roomType,
-                booking.checkIn,
-                booking.checkOut,
-                booking.amount,
-                booking.status,
-                booking.contactNumber,
-                booking.specialRequest,
-                booking.paymentMethod
-              )
-            );
-
-            counts.total++;
-            if (booking.status === "Confirmed") counts.confirmed++;
-            if (booking.status === "Pending") counts.pending++;
-            if (booking.status === "Cancelled") counts.cancelled++;
-          });
-        }
-
-        setBookings(loadedBookings.reverse());
-        setStatusCounts(counts);
-        setLoading(false);
-      },
-      (error) => {
-        console.error("Failed to fetch bookings:", error);
-        setLoading(false);
+      if (data) {
+        Object.keys(data).forEach(key => {
+          const booking = data[key];
+          loadedBookings.push(createData(
+            booking.reference,
+            booking.guestName,
+            booking.guestEmail,
+            booking.roomType,
+            booking.checkIn,
+            booking.checkOut,
+            booking.amount,
+            booking.status,
+            booking.contactNumber,
+            booking.specialRequest,
+            booking.paymentMethod
+          ));
+          
+          counts.total++;
+          if (booking.status === "Confirmed") counts.confirmed++;
+          if (booking.status === "Pending") counts.pending++;
+          if (booking.status === "Cancelled") counts.cancelled++;
+        });
       }
-    );
+
+      setBookings(loadedBookings.reverse());
+      setStatusCounts(counts);
+      setLoading(false);
+    }, (error) => {
+      console.error("Failed to fetch bookings:", error);
+      setLoading(false);
+    });
 
     return () => unsubscribe();
   }, []);
 
-  const filteredBookings = bookings.filter((booking) => {
-    const statusMatch = status === "All Status" || booking.status === status;
+  // -----------------------------------------------------------
+  // FILTERING AND PAGINATION LOGIC
+  // -----------------------------------------------------------
 
+  const filteredBookings = bookings.filter(booking => {
+    const statusMatch = status === "All Status" || booking.status === status;
+    
     const searchLower = searchTerm.toLowerCase();
-    const searchMatch =
-      !searchTerm ||
-      booking.bookId.toLowerCase().includes(searchLower) ||
-      booking.guestName.toLowerCase().includes(searchLower) ||
-      booking.guestEmail.toLowerCase().includes(searchLower);
+    const searchMatch = 
+        !searchTerm || 
+        booking.bookId.toLowerCase().includes(searchLower) ||
+        booking.guestName.toLowerCase().includes(searchLower) ||
+        booking.guestEmail.toLowerCase().includes(searchLower);
 
     return statusMatch && searchMatch;
   });
 
+  // Calculate pagination variables
   const totalPages = Math.ceil(filteredBookings.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
@@ -170,35 +130,50 @@ function Booking() {
 
   const handlePrevious = () => {
     if (currentPage > 1) {
-      setCurrentPage((prev) => prev - 1);
+      setCurrentPage(prev => prev - 1);
     }
   };
 
   const handleNext = () => {
     if (currentPage < totalPages) {
-      setCurrentPage((prev) => prev + 1);
+      setCurrentPage(prev => prev + 1);
     }
   };
+  
+  // FIX: Reset page when search term changes
+  const handleSearchChange = (e) => {
+      setSearchTerm(e.target.value);
+      setCurrentPage(1);
+  };
+  
+  // FIX: Reset page when status filter changes
+  const handleStatusFilterChange = (e) => {
+      setStatus(e.target.value);
+      setCurrentPage(1);
+  };
 
+
+  // -----------------------------------------------------------
+  // HANDLERS FOR ACTIONS
+  // -----------------------------------------------------------
+  
   const handleStatusChange = async (bookId, currentStatus) => {
     const currentIndex = STATUS_CYCLE.indexOf(currentStatus);
-    const nextIndex = (currentIndex + 1) % STATUS_CYCLE.length;
+    const nextIndex = (currentIndex + 1) % STATUS_CYCLE.length; 
     const newStatus = STATUS_CYCLE[nextIndex];
 
     try {
-      const bookingRef = ref(db, `reservations/${bookId}/status`);
-      await set(bookingRef, newStatus);
-      console.log(`Booking ${bookId} status updated to: ${newStatus}`);
+        const bookingRef = ref(db, `reservations/${bookId}/status`);
+        await set(bookingRef, newStatus);
+        console.log(`Booking ${bookId} status updated to: ${newStatus}`);
     } catch (error) {
-      console.error("Error updating status:", error);
-      alert(`Failed to update status to ${newStatus}: ${error.message}`);
+        console.error("Error updating status:", error);
+        alert(`Failed to update status to ${newStatus}: ${error.message}`);
     }
   };
 
   const handleDelete = async (bookId) => {
-    if (
-      window.confirm(`Are you sure you want to delete booking ID ${bookId}?`)
-    ) {
+    if (window.confirm(`Are you sure you want to delete booking ID ${bookId}?`)) {
       try {
         const bookingRef = ref(db, `reservations/${bookId}`);
         await remove(bookingRef);
@@ -209,118 +184,111 @@ function Booking() {
       }
     }
   };
-
+  
   const handleEdit = (booking) => {
-    setEditedBookingData({
-      ...booking,
-      guestRequest: booking.guestRequest,
-    });
-    setIsEditModalOpen(true);
+      setEditedBookingData({
+          ...booking,
+          guestRequest: booking.guestRequest
+      });
+      setIsEditModalOpen(true);
   };
-
+  
   const handleEditChange = (e) => {
-    const { name, value } = e.target;
+      const { name, value } = e.target;
+      
+      setEditedBookingData(prev => {
+          const newState = { ...prev, [name]: value };
+          
+          let checkIn = newState.checkIn;
+          let checkOut = newState.checkOut;
+          let roomType = newState.roomType;
 
-    setEditedBookingData((prev) => {
-      const newState = { ...prev, [name]: value };
+          if (name === 'checkIn' || name === 'checkOut' || name === 'roomType') {
+              const nights = calculateNights(checkIn, checkOut);
+              const pricePerNight = getRoomPrice(roomType);
+              
+              const newAmount = (pricePerNight * nights).toLocaleString(undefined, {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+              });
+              
+              newState.amount = newAmount;
+          }
 
-      let checkIn = newState.checkIn;
-      let checkOut = newState.checkOut;
-      let roomType = newState.roomType;
-
-      if (name === "checkIn" || name === "checkOut" || name === "roomType") {
-        const nights = calculateNights(checkIn, checkOut);
-        const pricePerNight = getRoomPrice(roomType);
-
-        const newAmount = (pricePerNight * nights).toLocaleString(undefined, {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        });
-
-        newState.amount = newAmount;
-      }
-
-      return newState;
-    });
+          return newState;
+      });
   };
-
+  
   const handleSave = async () => {
     if (!editedBookingData || !editedBookingData.bookId) return;
 
     if (editedBookingData.checkIn >= editedBookingData.checkOut) {
-      alert("Check-out date must be after Check-in date.");
-      return;
+        alert("Check-out date must be after Check-in date.");
+        return;
     }
 
     const bookId = editedBookingData.bookId;
-
+    
     const updates = {
-      guestName: editedBookingData.guestName,
-      guestEmail: editedBookingData.guestEmail,
-      contactNumber: editedBookingData.contactNumber,
-      checkIn: editedBookingData.checkIn,
-      checkOut: editedBookingData.checkOut,
-      roomType: editedBookingData.roomType,
-      specialRequest: editedBookingData.guestRequest,
-      status: editedBookingData.status,
-      amount: editedBookingData.amount,
+        guestName: editedBookingData.guestName,
+        guestEmail: editedBookingData.guestEmail,
+        contactNumber: editedBookingData.contactNumber,
+        checkIn: editedBookingData.checkIn,
+        checkOut: editedBookingData.checkOut,
+        roomType: editedBookingData.roomType,
+        specialRequest: editedBookingData.guestRequest, 
+        status: editedBookingData.status,
+        amount: editedBookingData.amount 
     };
 
     try {
-      const bookingRef = ref(db, `reservations/${bookId}`);
-      await update(bookingRef, updates);
-      setIsEditModalOpen(false);
-      console.log(`Booking ${bookId} updated successfully.`, updates);
+        const bookingRef = ref(db, `reservations/${bookId}`);
+        await update(bookingRef, updates); 
+        setIsEditModalOpen(false);
+        console.log(`Booking ${bookId} updated successfully.`, updates);
     } catch (error) {
-      console.error("Error updating booking:", error);
-      alert(`Failed to save changes: ${error.message}`);
+        console.error("Error updating booking:", error);
+        alert(`Failed to save changes: ${error.message}`);
     }
   };
 
   const handleCloseEditModal = () => {
-    setIsEditModalOpen(false);
-    setEditedBookingData(null);
+      setIsEditModalOpen(false);
+      setEditedBookingData(null);
   };
-
+  
   const handleView = (booking) => {
-    setSelectedBookingDetails(booking);
-    setIsModalOpen(true);
+      setSelectedBookingDetails(booking);
+      setIsModalOpen(true);
+  };
+  
+  const handleCloseModal = () => {
+      setIsModalOpen(false);
+      setSelectedBookingDetails(null);
   };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setSelectedBookingDetails(null);
-  };
+  // -----------------------------------------------------------
+  // STATUS BADGE COMPONENT
+  // -----------------------------------------------------------
 
   const StatusBadge = ({ bookId, status }) => {
     const style = {
       fontWeight: 600,
-      padding: "4px 8px",
-      borderRadius: "6px",
-      cursor: "pointer",
-      transition: "background 0.2s",
-      backgroundColor:
-        status === "Confirmed"
-          ? "#E6F4EA"
-          : status === "Pending"
-          ? "#FFF5E0"
-          : status === "Cancelled"
-          ? "#FFEDED"
-          : "#F0F0F0",
-      color:
-        status === "Confirmed"
-          ? "green"
-          : status === "Pending"
-          ? "#B46F46"
-          : status === "Cancelled"
-          ? "red"
-          : "#444",
+      padding: '4px 8px',
+      borderRadius: '6px',
+      cursor: 'pointer',
+      transition: 'background 0.2s',
+      backgroundColor: status === "Confirmed" ? "#E6F4EA" : status === "Pending" ? "#FFF5E0" : status === "Cancelled" ? "#FFEDED" : "#F0F0F0",
+      color: status === "Confirmed" ? "green" : status === "Pending" ? "#B46F46" : status === "Cancelled" ? "red" : "#444",
     };
-
+    
     return (
-      <span style={style} onClick={() => handleStatusChange(bookId, status)}>
-        {status}
-      </span>
+        <span 
+            style={style}
+            onClick={() => handleStatusChange(bookId, status)}
+        >
+            {status}
+        </span>
     );
   };
 
@@ -333,6 +301,7 @@ function Booking() {
             <p>View and manage all hotel bookings</p>
           </div>
 
+          {/* STATUS SUMMARY CARDS */}
           <div className="status-summary-row">
             <div className="status-card confirmed">
               <p>Confirmed</p>
@@ -351,6 +320,7 @@ function Booking() {
               <h3>{statusCounts.total}</h3>
             </div>
           </div>
+          {/* END STATUS SUMMARY CARDS */}
 
           <div className="search-container">
             <div className="search-content">
@@ -360,15 +330,14 @@ function Booking() {
                   type="text"
                   placeholder="Search by booking ID, guest name, or email..."
                   value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onChange={handleSearchChange} // NEW: Use centralized change handler
                 />
               </div>
               <div className="filter">
                 <FormControl>
                   <Select
                     value={status}
-                    onChange={(e) => setStatus(e.target.value)}
-                    IconComponent={ExpandMoreIcon}
+                    onChange={handleStatusFilterChange} 
                     displayEmpty
                     renderValue={() => (
                       <div
@@ -976,6 +945,7 @@ function Booking() {
                     color: "#4A5A47",
                     fontSize: "18px",
                     fontWeight: 600,
+                    marginBottom: "15px",
                   }}
                 >
                   Guest Information
@@ -1057,6 +1027,7 @@ function Booking() {
                     color: "#4A5A47",
                     fontSize: "18px",
                     fontWeight: 600,
+                    marginBottom: "15px",
                   }}
                 >
                   Booking Details
@@ -1115,7 +1086,6 @@ function Booking() {
                 >
                   Room Type
                 </label>
-
                 <select
                   name="roomType"
                   value={editedBookingData.roomType || ""}
